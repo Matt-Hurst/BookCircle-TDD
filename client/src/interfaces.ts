@@ -2,7 +2,7 @@ export interface Book {
   title: string;
   authors: string[];
   imageUrl: string;
-  dateRead: Date;
+  dateRead: string;
   review: string;
   availableToBorrow: boolean;
   genre: string;

@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Book } from '../../interfaces'
 
 import { ProgressBar } from '../ProgressBar' 
+import { calculateBooksReadThisYear } from '../../helpers'
+
 
 interface TargetProps {
   target: number;
@@ -11,27 +13,14 @@ interface TargetProps {
 
 const Target: React.FC<TargetProps> = ({target, books}) => {
   
-  let booksReadThisYear = 0;
-
-  if (books.length > 0) {
-    books.forEach(book => {
-      if( book.dateRead) {
-        const date = new Date(book.dateRead)
-        const currentYear = new Date().getFullYear()
-        if (date.getFullYear() === currentYear) {
-          booksReadThisYear++;
-        }
-      }
-    }
-    )
-  }
+  let booksReadThisYear: number = calculateBooksReadThisYear(books);
 
   const content = target ? 
   ( <div>
         <ProgressBar completed={(booksReadThisYear / target) * 100} />
         <div>
           <p>Books read this year:</p>
-          <p>{target}/{books.length}</p>
+          <p>{target}/{booksReadThisYear}</p>
           <button>edit</button>
         </div>
     </div>)
@@ -49,6 +38,7 @@ const Target: React.FC<TargetProps> = ({target, books}) => {
     </div>
   )
 }
+
 
 const mapStateToProps = ({target, books}: {target: number, books: Book[]}) => {
   return {
