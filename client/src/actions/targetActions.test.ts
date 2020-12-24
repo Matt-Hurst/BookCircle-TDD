@@ -37,7 +37,7 @@ describe('targetActions', () => {
     expect(actionsCalled[0]).toEqual(expectedAction)
   })
   it('Should update target in store when user has target set', async () => {
-    newTarget = 4;
+    newTarget = 7;
     store = mockStore({
       target: 10,
     })
@@ -45,7 +45,7 @@ describe('targetActions', () => {
       type: SET_TARGET,
       payload: newTarget
     }
-    
+
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({

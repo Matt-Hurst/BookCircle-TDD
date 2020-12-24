@@ -1,7 +1,13 @@
+import { SET_TARGET } from '../actions/targetActions'
+import { Action, Target } from '../interfaces'
 
-
-const reducer = (state:any, action:any) => {
-  return null
+export const targetReducer = (state:Target = {}, action:Action) => {
+  switch (action.type) {
+    case SET_TARGET:
+      return action.payload
+    default:
+      return state
+  }
 }
 
-export default reducer;
+export default targetReducer;
