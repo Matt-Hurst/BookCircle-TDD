@@ -14,7 +14,7 @@ describe('SetTargetModal', () => {
   })
   it('should close if X button is clicked', () => {
     render(<SetTargetModal changeTarget={changeTarget} turnModalOff={turnModalOff} />)
-    fireEvent.click(screen.getByText('X'))
+    fireEvent.click(screen.getByTestId('closeSVG'))
     expect(turnModalOff).toHaveBeenCalledTimes(1)
   })
   it('should close if greyedBackgroundDiv is clicked', () => {

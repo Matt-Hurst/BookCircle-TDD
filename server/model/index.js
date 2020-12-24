@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const activityLogSchema = new mongoose.Schema({
   message: String,
   type: String,
-  senderId: {type: mongoose.Schema.Types.ObjectId},
+  senderId: { type: mongoose.Schema.Types.ObjectId },
   createdAt: Date,
   book: String,
   activityId: Number,
@@ -28,4 +28,4 @@ userSchema.methods.toJSON = function () {
 
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+module.exports = User; 

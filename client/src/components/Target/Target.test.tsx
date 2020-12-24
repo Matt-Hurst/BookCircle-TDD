@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import Target from './Target';
@@ -8,24 +8,29 @@ const mockStore = configureStore([])
 
 describe('Target', () => {
   describe('no target in state set', () => {
-    let store:any;
+    let store: any;
     beforeEach(() => {
       store = mockStore({
         target: null,
         books: []
       })
     })
-    it('if no goal set renders set goal prompt', () => {
+    it('Should render set goal prompt if no goal is set', () => {
       render(<Provider store={store}><Target /></Provider>)
       expect(screen.getByText('no goals set, why not set one?')).toBeInTheDocument()
     })
+    it('Should show SetTargetModal if add goal button is clicked', () => {
+      render(<Provider store={store}><Target /></Provider>)
+      fireEvent.click(screen.getByRole('button'))
+      expect(screen.getByRole('spinbutton')).toBeInTheDocument();
+    })
   })
   describe('if target state then target progress shown', () => {
-    let store:any;
+    let store: any;
     beforeEach(() => {
       store = mockStore({
         target: 8,
-        books: [ {
+        books: [{
           title: "Death's End",
           authors: ['Cixin Liu'],
           imageUrl: 'http://books.google.com/books/content?id=A_1oCAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
@@ -49,13 +54,18 @@ describe('Target', () => {
         },]
       })
     })
-    it('renders correctly', () => {
+    it('Should render correctly', () => {
       render(<Provider store={store}><Target /></Provider>)
       expect(screen.getByText('edit')).toBeInTheDocument();
     })
-    it('renders ProgressBar component', () => {
+    it('Should render ProgressBar component', () => {
       render(<Provider store={store}><Target /></Provider>)
       expect(screen.getByText('25%')).toBeInTheDocument()
+    })
+    it('Should show SetTargetModal if edit button is clicked', () => {
+      render(<Provider store={store}><Target /></Provider>)
+      fireEvent.click(screen.getByRole('button'))
+      expect(screen.getByRole('spinbutton')).toBeInTheDocument();
     })
   })
 })

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { AiFillCloseCircle } from 'react-icons/ai';
 
 interface SetTargetModalProps {
   turnModalOff: Function;
@@ -15,8 +16,8 @@ const SetTargetModal: React.FC<SetTargetModalProps> = ({ turnModalOff, changeTar
 
   return (
     <div>
-      <div data-testid="greyedBackgroundDiv" onClick={turnModalOff}></div>
-      <button onClick={turnModalOff}>X</button>
+      <div data-testid="greyedBackgroundDiv" onClick={() => turnModalOff()}></div>
+      <AiFillCloseCircle onClick={() => turnModalOff()} data-testid="closeSVG" />
       <h2>Set new target</h2>
       <form
         action="submit"
