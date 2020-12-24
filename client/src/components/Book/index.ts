@@ -1,3 +1,3 @@
-import Book from './Book'
+import BookDisplay from './Book'
 
-export { Book }
+export { BookDisplay }
