@@ -8,6 +8,7 @@ export interface Book {
   genre: string;
   star: boolean;
   id: string;
+  friendName?: string;
 }
 
 export interface Action {

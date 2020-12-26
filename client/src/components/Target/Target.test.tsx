@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import configureStore from 'redux-mock-store';
 import Target from './Target';
-import { mockBooks } from '../../mocks/mocks';
+import { mockBooks } from '../../mocks';
 
 const mockStore = configureStore([])
 

@@ -1,5 +1,5 @@
 import { screen, fireEvent, render } from '@testing-library/react'
-import { mockBooks } from '../../mocks/mocks'
+import { mockBooks } from '../../mocks'
 import BookDisplay from './Book'
 
 describe('Book component', () => {
