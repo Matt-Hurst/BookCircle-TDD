@@ -15,7 +15,7 @@ interface TargetProps {
 const Target: React.FC<TargetProps> = ({ target, books }) => {
   const [isOpen, setIsOpen] = useState(false)
 
-  let booksReadThisYear: number = calculateBooksReadThisYear(books);
+  let booksReadThisYear: number = books ? calculateBooksReadThisYear(books) : 0;
 
   const toggleModal = () => {
     setIsOpen(prevState => !prevState);

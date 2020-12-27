@@ -1,3 +1,3 @@
-import Target from './Target'
+import TargetDisplay from './Target'
 
-export { Target };
+export { TargetDisplay };

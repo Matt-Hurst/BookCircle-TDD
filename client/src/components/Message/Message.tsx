@@ -25,7 +25,7 @@ const MessageComponent: React.FC<MessageComponentProps> = (
   ) =>  {
 
   return (
-    <div>
+    <div data-testid='message-component'>
       <p>{message.message}</p>
       {message.type === 'resolved' && (
         <div>
