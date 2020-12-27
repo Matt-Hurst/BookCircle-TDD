@@ -5,7 +5,7 @@ import moxios from 'moxios'
 
 const mockStore = configureStore([thunk])
 
-describe('targetActions', () => {
+describe('Target Action Creators', () => {
   let store: any;
   let newTarget: number;
   beforeEach(() => {

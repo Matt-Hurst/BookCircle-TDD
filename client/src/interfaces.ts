@@ -1,3 +1,14 @@
+/* 
+REDUX STORE:
+  {
+    friends: id[]
+    availableBooks: Book[]
+    messages: Message[]
+    books: Book[]
+    target: number
+  }
+*/
+
 export interface Book {
   title: string;
   authors: string[];

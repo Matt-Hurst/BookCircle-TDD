@@ -5,7 +5,7 @@ const URL = 'http://localhost:3001/'
 export const setUserTarget = (newTarget: number) => async (dispatch: Function) => {
   try {
     const { data } = await axios.put(`${URL}updateTarget`, {
-      target: 4
+      target: newTarget
     })
     dispatch({
       type: SET_TARGET,

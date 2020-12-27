@@ -134,7 +134,7 @@ exports.confirmFriendCtrl = async (req, res) => {
       $pull: { pendingFriends: userId }
     }, { new: true })
 
-    res.send(responder)
+    res.send(responder.activityLog)
   } catch (error) {
     console.error('ERROR', error)
   }
@@ -155,7 +155,7 @@ exports.rejectFriendRequestCtrl = async (req, res) => {
       },
       $pull: { pendingFriends: userId }
     }, { new: true })
-    res.send(responder)
+    res.send(responder.activityLog)
   } catch (error) {
     console.error('ERROR', error)
   }
@@ -181,7 +181,7 @@ exports.removeActivityLogElementCtrl = async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(userId, {
       $pull: { activityLog: { createdAt: createdAt } }
     }, { new: true });
-    res.send(updatedUser)
+    res.send(updatedUser.activityLog)
   } catch (error) {
     console.error('ERROR', error)
   }
@@ -212,7 +212,7 @@ exports.requestBookCtrl = async (req, res) => {
 
 exports.acceptBookRequestCtrl = async (req, res) => {
   try {
-    const { createdAt, userId, senderId, book, title } = req.body
+    const { createdAt, userId, senderId, title } = req.body
 
     const user = await User.findByIdAndUpdate(userId, {
       $pull: { activityLog: { createdAt: createdAt } }
@@ -227,7 +227,7 @@ exports.acceptBookRequestCtrl = async (req, res) => {
       },
     })
 
-    res.send(user)
+    res.send(user.activityLog)
   } catch (error) {
     console.error('ERROR', error)
   }
@@ -255,7 +255,7 @@ exports.rejectBookRequestCtrl = async (req, res) => {
         },
       },
     })
-    res.send(user)
+    res.send(user.activityLog)
   } catch (error) {
     console.error('ERROR', error)
   }
