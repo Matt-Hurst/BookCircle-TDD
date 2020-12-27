@@ -45,3 +45,5 @@ export const mockMessages = [
     createdAt: '1609064197449'
   }
 ]
+
+export const mockFriends = ['sdkjsdffja182', 'asd81yeah', 'sdhaud11929312']

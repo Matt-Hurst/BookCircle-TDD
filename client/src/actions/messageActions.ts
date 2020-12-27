@@ -1,12 +1,12 @@
 import axios from 'axios'
 const URL = 'http://localhost:3001/'
 
+export const friendActionTypes = {
+ ADD_FRIEND: 'ADD_FRIEND'
+}
+
 export const messageActionTypes = {
   REMOVE_MESSAGE: 'REMOVE_MESSAGE',
-  ACCEPT_BOOK_REQUEST: 'ACCEPT_BOOK_REQUEST',
-  REJECT_BOOK_REQUEST: 'REJECT_BOOK_REQUEST',
-  ACCEPT_FRIEND_REQUEST: 'ACCEPT_FRIEND_REQUEST',
-  REJECT_FRIEND_REQUEST: 'REJECT_FRIEND_REQUEST',
 }
 
 export const removeMessage  = (userId: string, createdAt: string) => async (dispatch: Function) => {
@@ -34,8 +34,12 @@ export const acceptFriendRequest = (senderId: string, userId: string, createdAt:
       createdAt
     })
     dispatch({
-      type: messageActionTypes.ACCEPT_FRIEND_REQUEST,
-      payload: data
+      type: messageActionTypes.REMOVE_MESSAGE,
+      payload: data.activityLog
+    })
+    dispatch({
+      type: friendActionTypes.ADD_FRIEND,
+      payload: data.friends
     })
   } catch (error) {
     console.error(error)
@@ -52,7 +56,7 @@ export const rejectFriendRequest = (senderId: string, userId: string, createdAt:
       }
     })
     dispatch({
-      type: messageActionTypes.REJECT_FRIEND_REQUEST,
+      type: messageActionTypes.REMOVE_MESSAGE,
       payload: data
     })
   } catch (error) {
@@ -69,7 +73,7 @@ export const acceptBookRequest = (senderId: string, userId: string, createdAt: s
       title
     })
     dispatch({
-      type: messageActionTypes.ACCEPT_BOOK_REQUEST,
+      type: messageActionTypes.REMOVE_MESSAGE,
       payload: data
     })
   } catch (error) {
@@ -87,7 +91,7 @@ export const rejectBookRequest = (senderId: string, userId: string, createdAt: s
       book: bookId
     })
     dispatch({
-      type: messageActionTypes.REJECT_BOOK_REQUEST,
+      type: messageActionTypes.REMOVE_MESSAGE,
       payload: data
     })
   } catch (error) {

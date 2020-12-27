@@ -134,7 +134,7 @@ exports.confirmFriendCtrl = async (req, res) => {
       $pull: { pendingFriends: userId }
     }, { new: true })
 
-    res.send(responder.activityLog)
+    res.send({friends: responder.friends, activityLog: responser.activityLog })
   } catch (error) {
     console.error('ERROR', error)
   }

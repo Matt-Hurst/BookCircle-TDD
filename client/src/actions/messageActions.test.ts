@@ -9,7 +9,7 @@ import  {
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk'
 import moxios from 'moxios'
-import { mockMessages } from '../mocks';
+import { mockFriends, mockMessages } from '../mocks';
 import { title } from 'process';
 
 const mockStore = configureStore([thunk])
@@ -52,22 +52,23 @@ describe('Message Action Creators', () => {
     const actionsCalled = store.getActions();
     expect(actionsCalled[0]).toEqual(expectedAction)
   })
-  it('acceptFriendRequest should make axios call and then disatch type: "ACCEPT_FRIEND_REQUEST" with payload', async () => {
-    const expectedAction = createAction(messageActionTypes.ACCEPT_FRIEND_REQUEST)
+  it('acceptFriendRequest should make axios call and then disatch type: "REMOVE_MESSAGE" with payload', async () => {
+    const expectedAction = createAction(messageActionTypes.REMOVE_MESSAGE)
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: newMessages
+        response: {activityLog: newMessages, friends: mockFriends}
       })
     })
     await store.dispatch(acceptFriendRequest(senderId, userId, mockMessages[0].createdAt))
     const actionsCalled = store.getActions();
     expect(actionsCalled[0]).toEqual(expectedAction)
+    expect(actionsCalled[1].payload).toEqual(mockFriends)
   })
-  it('rejectFriendRequest should make axios call and then disatch type: "REJECT_FRIEND_REQUEST" with payload', async () => {
-    const expectedAction = createAction(messageActionTypes.REJECT_FRIEND_REQUEST)
+  it('rejectFriendRequest should make axios call and then disatch type: "REMOVE_MESSAGE" with payload', async () => {
+    const expectedAction = createAction(messageActionTypes.REMOVE_MESSAGE)
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
@@ -80,8 +81,8 @@ describe('Message Action Creators', () => {
     const actionsCalled = store.getActions();
     expect(actionsCalled[0]).toEqual(expectedAction)
   })
-  it('acceptBookRequest should make axios call and then disatch type: "ACCEPT_BOOK_REQUEST" with payload', async () => {
-    const expectedAction = createAction(messageActionTypes.ACCEPT_BOOK_REQUEST)
+  it('acceptBookRequest should make axios call and then disatch type: "REMOVE_MESSAGE" with payload', async () => {
+    const expectedAction = createAction(messageActionTypes.REMOVE_MESSAGE)
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
@@ -94,8 +95,8 @@ describe('Message Action Creators', () => {
     const actionsCalled = store.getActions();
     expect(actionsCalled[0]).toEqual(expectedAction)
   })
-  it('rejectBookRequest should make axios call and then disatch type: "REJECT_BOOK_REQUEST" with payload', async () => {
-    const expectedAction = createAction(messageActionTypes.REJECT_BOOK_REQUEST)
+  it('rejectBookRequest should make axios call and then disatch type: "REMOVE_MESSAGE" with payload', async () => {
+    const expectedAction = createAction(messageActionTypes.REMOVE_MESSAGE)
 
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();

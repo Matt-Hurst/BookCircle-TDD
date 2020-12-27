@@ -1,5 +1,11 @@
-import { setUserTarget } from '/targetActions'
+const { setUserTarget } = require('/targetActions')
+const { removeMessage, acceptFriendRequest, rejectFriendRequest, acceptBookRequest, rejectBookRequest } = require('/messageActions')
 
 export {
-  setUserTarget
+  setUserTarget,
+  removeMessage,
+  acceptFriendRequest,
+  rejectFriendRequest,
+  acceptBookRequest,
+  rejectBookRequest
 }
