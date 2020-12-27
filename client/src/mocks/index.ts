@@ -23,3 +23,25 @@ export const mockBooks =
     id: 'ffd9e79a-176c-4b28-a4db-91976886f748',
   },
 ]
+
+export const mockMessages = [
+  { 
+    message: `Dave accepted your request to borrow Dune, get in touch now to organise collection!`,
+    type: 'resolved',
+    createdAt: '1609064197445'
+  },
+  {
+    message: `Andre wants to borrow What Woman Want.`, 
+    book: '1', 
+    title: 'What Woman Want', 
+    type: 'bookRequest', 
+    senderId: '5', 
+    createdAt: '1609064197441'
+  },
+  {
+    message: `Matt wants to add you as a friend.`, 
+    type: 'friendRequest', 
+    senderId: '3', 
+    createdAt: '1609064197449'
+  }
+]

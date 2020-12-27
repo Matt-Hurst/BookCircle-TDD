@@ -19,3 +19,12 @@ export interface Action {
 export interface Target {
   target?: number | null
 }
+
+export interface Message {
+  message: string;
+  type: string;
+  createdAt: string;
+  senderId?: string;
+  title?: string;
+  book?: string;
+}
