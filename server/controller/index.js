@@ -161,6 +161,15 @@ exports.rejectFriendRequestCtrl = async (req, res) => {
   }
 }
 
+exports.getTargetCtrl = async (req, res) => {
+  try {
+    const { target } = req.user
+    res.send(target)
+  } catch (error) {
+    console.error('ERROR', error)
+  }
+}
+
 exports.updateTargetCtrl = async (req, res) => {
   const { target } = req.body
   const { _id } = req.user

@@ -5,25 +5,27 @@ const {
   createUserCtrl, 
   addBookCrtl, 
   addFriendCtrl,
-   confirmFriendCtrl, 
-   updateTargetCtrl,
-   rejectFriendRequestCtrl,
-   removeActivityLogElementCtrl,
-   getUserCtrl,
-   getFriendsNameCtrl,
-   requestBookCtrl,
-   acceptBookRequestCtrl,
-   rejectBookRequestCtrl,
-   searchUsersCtrl,
-   getAvailableBooksCtrl,
-   editBookCtrl,
-   deleteBookCtrl,
-   loginCtrl
+  confirmFriendCtrl, 
+  getTargetCtrl,
+  updateTargetCtrl,
+  rejectFriendRequestCtrl,
+  removeActivityLogElementCtrl,
+  getUserCtrl,
+  getFriendsNameCtrl,
+  requestBookCtrl,
+  acceptBookRequestCtrl,
+  rejectBookRequestCtrl,
+  searchUsersCtrl,
+  getAvailableBooksCtrl,
+  editBookCtrl,
+  deleteBookCtrl,
+  loginCtrl
    } = require('./controller')
 
 // USER ROUTES
 router.get('/getCurrentUser', authMiddleware, getCurrentUserCtrl)
 router.get('/getUser/:name', authMiddleware, getUserCtrl)
+router.get('/target', authMiddleware, getTargetCtrl)
 router.post('/createUser', createUserCtrl)
 router.post('/login', loginCtrl)
 router.put('/updateTarget', authMiddleware, updateTargetCtrl)
