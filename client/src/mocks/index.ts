@@ -47,3 +47,5 @@ export const mockMessages = [
 ]
 
 export const mockFriends = ['sdkjsdffja182', 'asd81yeah', 'sdhaud11929312']
+export const friendId = '5fbd572aa93f503ce439ca8f' 
+export const bookId = 'c20f966f-df6f-4e16-9d85-64860ac36a73'

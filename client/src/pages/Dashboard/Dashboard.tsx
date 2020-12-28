@@ -30,7 +30,7 @@ const Dashboard: React.FC<DashboardProps> = ({availableBooks, messages, removeMe
 
   //TODO: update books state with users books using useEffect
   //TODO: update target with users target using useEffect
-  //TODO: make action creator, reducer, and pass into FriendBookModal for requestBook
+  //TODO: make action creator, reducer to update availableBooks, and pass into FriendBookModal for requestBook
 
   const messagesContent = messages.length ? 
   (

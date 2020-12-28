@@ -188,27 +188,24 @@ exports.removeActivityLogElementCtrl = async (req, res) => {
 }
 
 exports.requestBookCtrl = async (req, res) => {
-  // bookId, friendId from body
-  // user comes from req.user (middleware)
-  const { user, book, friendId } = req.body
+  const  user = req.user
+  const { bookId, friendId } = req.body
   try {
     await User.updateOne({
-      _id: friendId, books: { $elemMatch: { id: book.id } }
+      _id: friendId, books: { $elemMatch: { id: bookId } }
     },
       { $set: { "books.$.availableToBorrow": false } }
     )
 
-    const result = await User.findByIdAndUpdate(friendId, {
+    await User.findByIdAndUpdate(friendId, {
       $push: {
         activityLog: {
           $each: [{ message: `${user.name} wants to borrow ${book.title}.`, book: book.id, title: book.title, type: 'bookRequest', senderId: user._id, createdAt: Date.now() }],
           $position: 0
         },
       },
-    }, { new: true });
-    // don't need to send back friend
-    // need to get available books and send that back
-    res.send(result)
+    });
+    res.sendStatus(200)
   } catch (error) {
     console.error('ERROR', error)
   }
@@ -267,9 +264,8 @@ exports.rejectBookRequestCtrl = async (req, res) => {
 
 exports.getAvailableBooksCtrl = async (req, res) => {
   try {
-    const { userId } = req.params
+    const user = req.user
     const result = []
-    const user = await User.findById(userId)
 
     for (let i = 0; i < user.friends.length; i++) {
       const friend = await User.findById(user.friends[i])
@@ -279,7 +275,7 @@ exports.getAvailableBooksCtrl = async (req, res) => {
             {
               friendName: friend.name,
               friendId: friend._id,
-              book
+              ...book
             })
         }
       })

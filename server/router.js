@@ -39,7 +39,7 @@ router.post('/addBook', authMiddleware, addBookCrtl)
 router.post('/requestBook', authMiddleware, requestBookCtrl)
 router.post('/acceptBookRequest', authMiddleware, acceptBookRequestCtrl)
 router.post('/rejectBookRequest', authMiddleware, rejectBookRequestCtrl)
-router.get('/availableBooks/:userId', authMiddleware, getAvailableBooksCtrl)
+router.get('/availableBooks', authMiddleware, getAvailableBooksCtrl)
 router.put('/editBook', authMiddleware, editBookCtrl)
 router.delete('/deleteBook', authMiddleware, deleteBookCtrl )
 
