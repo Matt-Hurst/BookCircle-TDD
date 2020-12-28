@@ -1,10 +1,10 @@
-import { bookReducer } from './bookReducer'
+import availableBookReducer from './availableBookReducer'
 import { SET_AVAILABLE_BOOKS } from '../actions/bookActions'
 import { mockBooks } from '../mocks'
 
-describe('bookReducer', () => {
+describe('availableBookReducer', () => {
   it('Should return the initial state', () => {
-    const newState = bookReducer(undefined, {})
+    const newState = availableBookReducer(undefined, {})
     expect(newState).toEqual({})
   })
   it('Should handle SET_AVAILABLE_BOOKS', () => {
@@ -12,7 +12,7 @@ describe('bookReducer', () => {
       type: SET_AVAILABLE_BOOKS,
       payload: mockBooks
     }
-    const newState = bookReducer({}, setAvailableBooksAction)
+    const newState = availableBookReducer({}, setAvailableBooksAction)
     expect(newState).toEqual(setAvailableBooksAction.payload)
   })
 })
