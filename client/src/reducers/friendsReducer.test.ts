@@ -1,4 +1,4 @@
-import friendsReducer from './friendsReducer'
+import { friendsReducer } from './friendsReducer'
 import { friendActionTypes } from '../actions/messageActions'
 import { mockFriends } from '../mocks'
 

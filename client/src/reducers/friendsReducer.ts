@@ -1,7 +1,7 @@
 import { friendActionTypes } from '../actions/messageActions'
 import { Action } from '../interfaces'
 
-const friendsReducer = (state = {}, action: Action) => {
+export const friendsReducer = (state = {}, action: Action) => {
   switch(action.type) {
     case friendActionTypes.ADD_FRIEND:
       return action.payload
@@ -9,5 +9,3 @@ const friendsReducer = (state = {}, action: Action) => {
       return state
   }
 }
-
-export default friendsReducer

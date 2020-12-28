@@ -1,4 +1,4 @@
-import targetReducer from './targetReducer'
+import { targetReducer } from './targetReducer'
 import { SET_TARGET } from '../actions/targetActions'
 
 describe('targetReducer', () => {
