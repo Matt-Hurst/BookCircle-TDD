@@ -188,6 +188,8 @@ exports.removeActivityLogElementCtrl = async (req, res) => {
 }
 
 exports.requestBookCtrl = async (req, res) => {
+  // bookId, friendId from body
+  // user comes from req.user (middleware)
   const { user, book, friendId } = req.body
   try {
     await User.updateOne({
@@ -204,6 +206,8 @@ exports.requestBookCtrl = async (req, res) => {
         },
       },
     }, { new: true });
+    // don't need to send back friend
+    // need to get available books and send that back
     res.send(result)
   } catch (error) {
     console.error('ERROR', error)
@@ -274,6 +278,7 @@ exports.getAvailableBooksCtrl = async (req, res) => {
           result.push(
             {
               friendName: friend.name,
+              friendId: friend._id,
               book
             })
         }
