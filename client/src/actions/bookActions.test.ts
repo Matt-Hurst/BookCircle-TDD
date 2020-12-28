@@ -1,4 +1,4 @@
-import  { requestBook, REQUEST_BOOK } from './bookActions'
+import  { requestBook, SET_AVAILABLE_BOOKS } from './bookActions'
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk'
 import moxios from 'moxios'
@@ -24,7 +24,7 @@ describe('Book Action Creators', () => {
       availableBooks: mockBooks,
     })
     const expectedAction = {
-      type: REQUEST_BOOK,
+      type: SET_AVAILABLE_BOOKS,
       payload: newAvailableBooks
     }
     
@@ -32,7 +32,6 @@ describe('Book Action Creators', () => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        // response: newAvailableBooks
       })
     })
     moxios.wait(() => {

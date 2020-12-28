@@ -1,5 +1,5 @@
 import axios from 'axios'
-export const REQUEST_BOOK = 'REQUEST_BOOK';
+export const SET_AVAILABLE_BOOKS = 'SET_AVAILABLE_BOOKS';
 const URL = 'http://localhost:3001/'
 
 export const requestBook = (friendId: string, bookId: string) => async (dispatch: Function) => {
@@ -11,7 +11,7 @@ export const requestBook = (friendId: string, bookId: string) => async (dispatch
     if(status === 200) {
       const { data } = await axios.get(`${URL}availableBooks`)
       dispatch({
-        type: REQUEST_BOOK,
+        type: SET_AVAILABLE_BOOKS,
         payload: data
       })
     }
