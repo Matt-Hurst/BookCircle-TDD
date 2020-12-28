@@ -1,4 +1,4 @@
-import { messageReducer } from './messageReducer'
+import messageReducer from './messageReducer'
 import { messageActionTypes } from '../actions/messageActions'
 import { mockMessages } from '../mocks'
 

@@ -1,7 +1,7 @@
 import { SET_TARGET } from '../actions/targetActions'
 import { Action, Target } from '../interfaces'
 
-export const targetReducer = (state:Target = {}, action:Action) => {
+const targetReducer = (state:Target = {}, action:Action) => {
   switch (action.type) {
     case SET_TARGET:
       return action.payload
@@ -9,3 +9,5 @@ export const targetReducer = (state:Target = {}, action:Action) => {
       return state
   }
 }
+
+export default targetReducer;

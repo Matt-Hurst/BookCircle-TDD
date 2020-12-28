@@ -1,7 +1,7 @@
 import { messageActionTypes } from '../actions/messageActions'
 import { Action } from '../interfaces'
 
-export const messageReducer = (state = {}, action: Action) => {
+const messageReducer = (state = {}, action: Action) => {
   switch(action.type) {
     case messageActionTypes.REMOVE_MESSAGE:
       return action.payload
@@ -9,3 +9,5 @@ export const messageReducer = (state = {}, action: Action) => {
       return state
   }
 }
+
+export default messageReducer
