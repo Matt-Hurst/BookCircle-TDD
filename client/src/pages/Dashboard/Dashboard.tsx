@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import  { 
   removeMessage,
@@ -7,6 +7,7 @@ import  {
   acceptBookRequest,
   rejectBookRequest,
 } from '../../actions/messageActions'
+import { requestBook, getAvailableBooks } from '../../actions/bookActions'
 import { BookShelf } from '../../components/BookShelf'
 import { FriendBookModal } from '../../components/FriendBookModal'
 import { MessageComponent } from '../../components/Message'
@@ -21,16 +22,28 @@ interface DashboardProps {
   rejectFriendRequest: Function;
   acceptBookRequest: Function;
   rejectBookRequest: Function;
+  requestBook: Function
 }
 
-const Dashboard: React.FC<DashboardProps> = ({availableBooks, messages, removeMessage, acceptFriendRequest, rejectFriendRequest, acceptBookRequest, rejectBookRequest}) => {
+const Dashboard: React.FC<DashboardProps> = (
+  {
+    availableBooks, 
+    messages, 
+    removeMessage, 
+    acceptFriendRequest, 
+    rejectFriendRequest, 
+    acceptBookRequest, 
+    rejectBookRequest, 
+    requestBook
+  }) => {
 
   const [friendsBookClicked, setFriendsBookClicked] = useState(false)
   const [clickedBook, setClickedBook] = useState<Book>()
 
-  //TODO: update books state with users books using useEffect
-  //TODO: update target with users target using useEffect
-  //TODO: make action creator, reducer to update availableBooks, and pass into FriendBookModal for requestBook
+  useEffect(() => {
+    getAvailableBooks()
+  }, [])
+  //TODO: update target with users target using useEffect => ActionCreator? Reducer?
 
   const messagesContent = messages.length ? 
   (
@@ -63,7 +76,7 @@ const Dashboard: React.FC<DashboardProps> = ({availableBooks, messages, removeMe
         setFriendsBookClicked(true)
         }}
       />
-      {friendsBookClicked && <FriendBookModal book={clickedBook} closeModal={() => setFriendsBookClicked(false)}/>}
+      {friendsBookClicked && <FriendBookModal requestBook={requestBook} book={clickedBook} closeModal={() => setFriendsBookClicked(false)}/>}
     </div>
   )
 }
@@ -75,4 +88,13 @@ const mapStateToProps = ({availableBooks, messages}:{availableBooks: Book[], mes
   }
 }
 
-export default connect(mapStateToProps, { removeMessage, acceptFriendRequest, rejectFriendRequest, acceptBookRequest, rejectBookRequest })(Dashboard)
+export default connect(
+  mapStateToProps, 
+  { 
+    removeMessage, 
+    acceptFriendRequest, 
+    rejectFriendRequest, 
+    acceptBookRequest, 
+    rejectBookRequest,
+    requestBook, 
+  })(Dashboard)
