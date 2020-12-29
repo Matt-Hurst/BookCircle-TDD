@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { retrieveTokenFromLocalStorage } from '../helpers'
+
 const URL = 'http://localhost:3001/'
 
 export const friendActionTypes = {
@@ -11,10 +13,15 @@ export const messageActionTypes = {
 
 export const removeMessage  = (userId: string, createdAt: string) => async (dispatch: Function) => {
   try {
-    const { data } = await axios.delete(`${URL}removeActivityLogElement`, {
+    const { data } = await axios({
+      method: 'delete',
+      url: `${URL}removeActivityLogElement`,
       data: {
         userId,
         createdAt
+      },
+      headers: {
+        'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}`
       }
     })
     dispatch({
@@ -28,10 +35,20 @@ export const removeMessage  = (userId: string, createdAt: string) => async (disp
 
 export const acceptFriendRequest = (senderId: string, userId: string, createdAt: string) => async (dispatch: Function) => {
   try {
-    const { data } = await axios.post(`${URL}confirmFriend`, {
-      senderId,
-      userId,
-      createdAt
+    // const { data } = await axios.post(`${URL}confirmFriend`, {
+    //   senderId,
+    //   userId,
+    //   createdAt
+    // })
+    const { data } = await axios({
+      method: 'post',
+      url: `${URL}confirmFriend`,
+      data: {
+        senderId,
+        userId,
+        createdAt
+      },
+      headers: { 'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}` }
     })
     dispatch({
       type: messageActionTypes.REMOVE_MESSAGE,
@@ -48,12 +65,15 @@ export const acceptFriendRequest = (senderId: string, userId: string, createdAt:
 
 export const rejectFriendRequest = (senderId: string, userId: string, createdAt: string) => async (dispatch: Function) => {
   try {
-    const { data } = await axios.delete(`${URL}rejectFriendRequest`, {
+    const { data } = await axios({
+      method: 'delete',
+      url: `${URL}rejectFriendRequest`,
       data: {
         senderId,
         userId,
         createdAt
-      }
+      },
+      headers: { 'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}` }
     })
     dispatch({
       type: messageActionTypes.REMOVE_MESSAGE,
@@ -66,11 +86,16 @@ export const rejectFriendRequest = (senderId: string, userId: string, createdAt:
 
 export const acceptBookRequest = (senderId: string, userId: string, createdAt: string, title: string) => async (dispatch: Function) => {
   try {
-    const { data } = await axios.post(`${URL}acceptBookRequest`, {
-      senderId,
-      userId,
-      createdAt,
-      title
+    const { data } = await axios({
+      method: 'post',
+      url: `${URL}rejectFriendRequest`,
+      headers: { 'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}` },
+      data: {
+        senderId,
+        userId,
+        createdAt,
+        title
+      },
     })
     dispatch({
       type: messageActionTypes.REMOVE_MESSAGE,
@@ -84,11 +109,16 @@ export const acceptBookRequest = (senderId: string, userId: string, createdAt: s
 export const rejectBookRequest = (senderId: string, userId: string, createdAt: string, title: string, bookId: string) => async (dispatch: Function) => {
   try {
     const { data } = await axios.post(`${URL}acceptBookRequest`, {
-      senderId,
-      userId,
-      createdAt,
-      title,
-      book: bookId
+      method: 'post',
+      url: `${URL}rejectFriendRequest`,
+      headers: { 'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}` },
+      data: {
+        senderId,
+        userId,
+        createdAt,
+        title,
+        book: bookId
+      }
     })
     dispatch({
       type: messageActionTypes.REMOVE_MESSAGE,
