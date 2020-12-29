@@ -5,14 +5,16 @@ import { FaUserFriends } from "react-icons/fa";
 import { ImBooks } from "react-icons/im";
 import { VscSearch } from "react-icons/vsc";
 
+import './Header.scss'
+
 const Header = () => {
 
   return (
-    <div>
+    <div className='header-grand-wrapper'>
       <Link to='/'>
-        <img className='logo' src={Logo} alt="Book Circle logo"/>
+        <img className='__logo' src={Logo} alt="Book Circle logo"/>
       </Link>
-      <div className="iconsDiv">
+      <div className="__icons-wrapper">
         <Link to='/yourLibrary'>
           <ImBooks className="icon"/>
         </Link>

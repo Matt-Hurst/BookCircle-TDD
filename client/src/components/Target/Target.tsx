@@ -18,7 +18,7 @@ const Target: React.FC<TargetProps> = ({ target, books, getTarget, setUserTarget
   
   useEffect(() => {
     getTarget()
-  }, [])
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   const [isOpen, setIsOpen] = useState(false)
 

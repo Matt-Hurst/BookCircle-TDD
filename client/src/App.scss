@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@300;400;500&display=swap');
+
+// Colours
+$primary-red: #DA291C;
+$primary-dark: #1C191A;
+$background-color: #F6E7D8;
+
+// Sizes
+$XXS: 0.4rem;
+$XS: 0.8rem;
+$S: 1.2rem;
+$M: 1.6rem;
+$L: 2rem;
+$XL: 2.4rem;
+$XXL: 2.8rem;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  font-size: 10px;
+  background-color: $background-color;
+  font-family: 'Yantramanav', sans-serif;
+}

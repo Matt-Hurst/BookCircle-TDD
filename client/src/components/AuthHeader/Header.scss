@@ -1,0 +1,31 @@
+@import '../../App.scss';
+
+.header-grand-wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  .__logo {
+    height: 100px;
+    margin: 0.5rem 0 0 0.5rem;
+  }
+  .__icons-wrapper {
+    margin: 1.5rem 0.5rem 0 0;
+  
+    .icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 0.5rem;
+    }
+  
+    .searchIcon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 5px;
+    }
+  
+    a {
+      text-decoration: none;
+      color: $primary-dark;
+    }
+  }
+}

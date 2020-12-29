@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
 import AuthenticatedApp from './AuthenticatedApp';
+import './App.scss';
 
 function App() {
   return (
