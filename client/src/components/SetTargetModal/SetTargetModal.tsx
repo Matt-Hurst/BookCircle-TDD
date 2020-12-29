@@ -26,7 +26,7 @@ const SetTargetModal: React.FC<SetTargetModalProps> = ({ turnModalOff, changeTar
             event.preventDefault()
             if (input === '') turnModalOff()
             else {
-              await changeTarget(input)
+              await changeTarget(+input)
               turnModalOff()
             }
           }
