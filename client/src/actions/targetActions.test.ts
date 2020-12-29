@@ -1,4 +1,4 @@
-import  { getUserTarget, setUserTarget, SET_TARGET } from './targetActions'
+import  { getTarget, setUserTarget, SET_TARGET } from './targetActions'
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk'
 import moxios from 'moxios'
@@ -15,7 +15,7 @@ describe('Target Action Creators', () => {
     moxios.uninstall()
   })
 
-  it('getUserTarget should make axios call and then disatch type: "SET_TARGET" with payload', async () => {
+  it('getTarget should make axios call and then disatch type: "SET_TARGET" with payload', async () => {
     const target = 22;
     store = mockStore({
       target: null,
@@ -32,7 +32,7 @@ describe('Target Action Creators', () => {
         response: target
       })
     })
-    await store.dispatch(getUserTarget())
+    await store.dispatch(getTarget())
     const actionsCalled = store.getActions();
     expect(actionsCalled[0]).toEqual(expectedAction)
   })

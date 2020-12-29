@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Book } from '../../interfaces'
-
+import { getTarget, setUserTarget } from '../../actions'
 import { ProgressBar } from '../ProgressBar'
 import { SetTargetModal } from '../SetTargetModal'
 import { calculateBooksReadThisYear } from '../../helpers'
@@ -9,10 +9,17 @@ import { calculateBooksReadThisYear } from '../../helpers'
 
 interface TargetProps {
   target: number;
-  books: Book[] | []
+  books: Book[] | [];
+  getTarget: Function;
+  setUserTarget: Function;
 }
 
-const Target: React.FC<TargetProps> = ({ target, books }) => {
+const Target: React.FC<TargetProps> = ({ target, books, getTarget, setUserTarget }) => {
+  
+  useEffect(() => {
+    getTarget()
+  }, [])
+
   const [isOpen, setIsOpen] = useState(false)
 
   let booksReadThisYear: number = books ? calculateBooksReadThisYear(books) : 0;
@@ -20,11 +27,6 @@ const Target: React.FC<TargetProps> = ({ target, books }) => {
   const toggleModal = () => {
     setIsOpen(prevState => !prevState);
   };
-
-  const changeTarget = (number: number) => {
-    return number;
-  }
-
 
   const content = target ? (
     <div>
@@ -42,7 +44,7 @@ const Target: React.FC<TargetProps> = ({ target, books }) => {
       </div>
     )
 
-  const modal = isOpen ? <SetTargetModal turnModalOff={toggleModal} changeTarget={changeTarget} /> : null;
+  const modal = isOpen ? <SetTargetModal turnModalOff={toggleModal} changeTarget={setUserTarget} /> : null;
 
   return (
     <div>
@@ -58,6 +60,6 @@ const mapStateToProps = ({ target, books }: { target: number, books: Book[] }) =
     target,
     books
   }
-}
+} 
 
-export default connect(mapStateToProps)(Target);
+export default connect(mapStateToProps, {getTarget, setUserTarget})(Target);

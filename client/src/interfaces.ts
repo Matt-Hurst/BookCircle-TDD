@@ -27,10 +27,6 @@ export interface Action {
   payload?: any;
 }
 
-export interface Target {
-  target?: number | null
-}
-
 export interface Message {
   message: string;
   type: string;

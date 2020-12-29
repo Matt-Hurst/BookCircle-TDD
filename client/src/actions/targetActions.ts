@@ -2,7 +2,7 @@ import axios from 'axios'
 export const SET_TARGET = 'SET_TARGET';
 const URL = 'http://localhost:3001/'
 
-export const getUserTarget = () => async (dispatch: Function) => {
+export const getTarget = () => async (dispatch: Function) => {
   try {
     const { data } = await axios.get(`${URL}target`)
     dispatch({

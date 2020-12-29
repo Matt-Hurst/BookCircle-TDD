@@ -1,7 +1,7 @@
 import { SET_TARGET } from '../actions/targetActions'
-import { Action, Target } from '../interfaces'
+import { Action } from '../interfaces'
 
-const targetReducer = (state:Target = {}, action:Action) => {
+const targetReducer = (state:number = 0, action:Action) => {
   switch (action.type) {
     case SET_TARGET:
       return action.payload

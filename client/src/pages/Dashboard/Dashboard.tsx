@@ -6,8 +6,9 @@ import  {
   rejectFriendRequest, 
   acceptBookRequest,
   rejectBookRequest,
-} from '../../actions/messageActions'
-import { requestBook, getAvailableBooks } from '../../actions/bookActions'
+  requestBook,
+  getAvailableBooks,
+} from '../../actions'
 import { BookShelf } from '../../components/BookShelf'
 import { FriendBookModal } from '../../components/FriendBookModal'
 import { MessageComponent } from '../../components/Message'
@@ -22,7 +23,7 @@ interface DashboardProps {
   rejectFriendRequest: Function;
   acceptBookRequest: Function;
   rejectBookRequest: Function;
-  requestBook: Function
+  requestBook: Function;
 }
 
 const Dashboard: React.FC<DashboardProps> = (
@@ -34,7 +35,7 @@ const Dashboard: React.FC<DashboardProps> = (
     rejectFriendRequest, 
     acceptBookRequest, 
     rejectBookRequest, 
-    requestBook
+    requestBook,
   }) => {
 
   const [friendsBookClicked, setFriendsBookClicked] = useState(false)
@@ -43,7 +44,6 @@ const Dashboard: React.FC<DashboardProps> = (
   useEffect(() => {
     getAvailableBooks()
   }, [])
-  //TODO: update target with users target using useEffect => ActionCreator? Reducer?
 
   const messagesContent = messages.length ? 
   (
@@ -82,7 +82,7 @@ const Dashboard: React.FC<DashboardProps> = (
 }
 
 const mapStateToProps = ({availableBooks, messages}:{availableBooks: Book[], messages: Message[]}) => {
-  return { 
+  return {
     availableBooks,
     messages
   }
@@ -96,5 +96,5 @@ export default connect(
     rejectFriendRequest, 
     acceptBookRequest, 
     rejectBookRequest,
-    requestBook, 
+    requestBook,
   })(Dashboard)

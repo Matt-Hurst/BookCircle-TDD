@@ -9,7 +9,7 @@ interface BookShelfProps {
 
 const BookShelf: React.FC<BookShelfProps> = ({books, handleClick}) => {
 
-  const content = books ? 
+  const content = books && books.length > 0 ? 
   (
     <div>
       {books.map(book => {
