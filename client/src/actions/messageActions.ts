@@ -1,7 +1,7 @@
 import axios from 'axios'
-import { retrieveTokenFromLocalStorage } from '../helpers'
+import { retrieveTokenFromLocalStorage } from '../auth'
+import { URL } from '../helpers'
 
-const URL = 'http://localhost:3001/'
 
 export const friendActionTypes = {
  ADD_FRIEND: 'ADD_FRIEND'
@@ -35,11 +35,6 @@ export const removeMessage  = (userId: string, createdAt: string) => async (disp
 
 export const acceptFriendRequest = (senderId: string, userId: string, createdAt: string) => async (dispatch: Function) => {
   try {
-    // const { data } = await axios.post(`${URL}confirmFriend`, {
-    //   senderId,
-    //   userId,
-    //   createdAt
-    // })
     const { data } = await axios({
       method: 'post',
       url: `${URL}confirmFriend`,

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { retrieveTokenFromLocalStorage } from '../helpers'
+import { retrieveTokenFromLocalStorage } from '../auth'
 import { URL } from '../helpers'
 
 export const SET_AVAILABLE_BOOKS = 'SET_AVAILABLE_BOOKS';
@@ -11,7 +11,6 @@ export const getAvailableBooks = () => async (dispatch: Function) => {
       url: `${URL}availableBooks`,
       headers: {'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}`}
     })
-    console.log('DISPATCH: ',dispatch)
     dispatch({
       type: SET_AVAILABLE_BOOKS,
       payload: data

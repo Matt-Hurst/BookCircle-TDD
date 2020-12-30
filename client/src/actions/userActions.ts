@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { retrieveTokenFromLocalStorage, URL } from '../helpers'
+import { retrieveTokenFromLocalStorage } from '../auth'
+import { URL } from '../helpers'
 import { SET_TARGET } from './targetActions';
 
 export const SET_USER_BOOKS = 'SET_USER_BOOKS';

@@ -1,7 +1,9 @@
 import axios from 'axios'
-import { retrieveTokenFromLocalStorage } from '../helpers'
+import { retrieveTokenFromLocalStorage } from '../auth'
+import { URL } from '../helpers'
+
 export const SET_TARGET = 'SET_TARGET';
-const URL = 'http://localhost:3001/'
+
 
 export const getTarget = () => async (dispatch: Function) => {
   try {
