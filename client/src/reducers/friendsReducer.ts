@@ -1,4 +1,3 @@
-import { act } from 'react-dom/test-utils'
 import { friendActionTypes } from '../actions/messageActions'
 import { SET_FRIENDS } from '../actions/userActions'
 import { Action } from '../interfaces'

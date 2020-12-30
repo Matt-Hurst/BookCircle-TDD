@@ -22,13 +22,13 @@ describe('User Action Creators', () => {
   afterEach(() => {
     moxios.uninstall()
   })
-  it('Should make axios call and make 5 dispatches to set redux store', async () => {
+  it('Should make axios call and make 4 dispatches to set redux store', async () => {
 
     const expectedData = {
-      target: 10,
+      yearlyTarget: 10,
       books: mockBooks,
       friends: mockFriends,
-      messages: mockMessages
+      activityLog: mockMessages
     }
 
     const expectedAction1 = {

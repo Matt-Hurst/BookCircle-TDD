@@ -13,7 +13,6 @@ export const getUserData = () => async (dispatch: Function) => {
       url: `${URL}getCurrentUser`,
       headers: { 'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}` }
     })
-    console.log(data)
     dispatch({
       type: SET_USER_BOOKS,
       payload: data.books

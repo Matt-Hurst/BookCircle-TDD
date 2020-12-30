@@ -16,16 +16,8 @@ interface TargetProps {
 
 const Target: React.FC<TargetProps> = ({ target, books, getTarget, setUserTarget }) => {
   
-  const onLoad = async () => {
-    try {
-      await getTarget()
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    onLoad()
+   useEffect(() => {
+    // getTarget()
   }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   const [isOpen, setIsOpen] = useState(false)
@@ -41,7 +33,7 @@ const Target: React.FC<TargetProps> = ({ target, books, getTarget, setUserTarget
       <ProgressBar completed={(booksReadThisYear / target) * 100} />
       <div>
         <p>Books read this year:</p>
-        <p>{target}/{booksReadThisYear}</p>
+        <p>{booksReadThisYear}/{target}</p>
         <button onClick={toggleModal}>edit</button>
       </div>
     </div>

@@ -1,11 +1,12 @@
 import React from 'react'
-import { render, screen, fireEvent } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
 import configureStore from 'redux-mock-store';
 import { mockBooks, mockMessages } from '../../mocks'
 import Dashboard from './Dashboard'
 
-const mockStore = configureStore([])
+const mockStore = configureStore([thunk])
 
 describe('Dashboard page', () => {
   let store: any;

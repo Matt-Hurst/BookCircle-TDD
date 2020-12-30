@@ -6,14 +6,12 @@ export const SET_AVAILABLE_BOOKS = 'SET_AVAILABLE_BOOKS';
 
 export const getAvailableBooks = () => async (dispatch: Function) => {
   try {
-    // const { data } = await axios.get(`${URL}availableBooks`, {
-    //   headers
-    // })
     const { data } = await axios({
       method: 'get',
       url: `${URL}availableBooks`,
       headers: {'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}`}
     })
+    console.log('DISPATCH: ',dispatch)
     dispatch({
       type: SET_AVAILABLE_BOOKS,
       payload: data
@@ -25,10 +23,6 @@ export const getAvailableBooks = () => async (dispatch: Function) => {
 
 export const requestBook = (friendId: string, bookId: string) => async (dispatch: Function) => {
   try {
-    // const { status } = await axios.post(`${URL}requestBook`, {
-    //   friendId,
-    //   bookId
-    // })
     const { status } = await axios({
       method: 'post',
       url: `${URL}availableBooks`,

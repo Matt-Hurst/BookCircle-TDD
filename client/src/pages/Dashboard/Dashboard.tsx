@@ -8,6 +8,7 @@ import  {
   rejectBookRequest,
   requestBook,
   getAvailableBooks,
+  getUserData
 } from '../../actions'
 import { BookShelf } from '../../components/BookShelf'
 import { FriendBookModal } from '../../components/FriendBookModal'
@@ -24,6 +25,8 @@ interface DashboardProps {
   acceptBookRequest: Function;
   rejectBookRequest: Function;
   requestBook: Function;
+  getAvailableBooks: Function;
+  getUserData: Function;
 }
 
 const Dashboard: React.FC<DashboardProps> = (
@@ -36,23 +39,17 @@ const Dashboard: React.FC<DashboardProps> = (
     acceptBookRequest, 
     rejectBookRequest, 
     requestBook,
+    getAvailableBooks,
+    getUserData
   }) => {
 
   const [friendsBookClicked, setFriendsBookClicked] = useState(false)
   const [clickedBook, setClickedBook] = useState<Book>()
 
-  const getUserData = async () => {
-    try {
-      await getAvailableBooks()
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
   useEffect(() => {
+    getAvailableBooks()
     getUserData()
-  }, [])
-
+  }, [])// eslint-disable-line
   const messagesContent = messages.length ? 
   (
     <div>
@@ -105,4 +102,6 @@ export default connect(
     acceptBookRequest, 
     rejectBookRequest,
     requestBook,
+    getAvailableBooks,
+    getUserData
   })(Dashboard)
