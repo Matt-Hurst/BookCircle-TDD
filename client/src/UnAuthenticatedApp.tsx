@@ -6,20 +6,20 @@ import {
 } from "react-router-dom"
 
 import { Header } from './components/AuthHeader'
-import { Dashboard } from './pages/Dashboard';
+import { Login } from './pages/Login';
 
 
-function AuthenticatedApp() {
+const UnAuthenticatedApp = () => {
   return (
     <Router>
       <Header />
       <Switch>
         <Route path="/" exact>
-          <Dashboard />
+          <Login />
         </Route>
       </Switch>
     </Router>
   );
 }
 
-export default AuthenticatedApp;
+export { UnAuthenticatedApp };

@@ -1,17 +1,22 @@
 import React, { useState } from 'react'
-import { FaForumbee } from 'react-icons/fa';
 import { useHistory } from "react-router-dom";
 
 import './LoginForm.scss'
 
 interface LoginFormProps {
-  handleSubmit: Function;
+  loginFunc: Function;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({handleSubmit}) => {
+const LoginForm: React.FC<LoginFormProps> = ({loginFunc}) => {
   const [formValues, setFormValues] = useState({name: '', password: ''})
   const history = useHistory();
 
+  const handleSubmit = async (e?:React.FormEvent<HTMLFormElement>) => {
+    e && e.preventDefault()
+    await loginFunc(formValues.name, formValues.password)
+    setFormValues({name: '', password: ''})
+    history.go(0)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValues({
@@ -21,16 +26,10 @@ const LoginForm: React.FC<LoginFormProps> = ({handleSubmit}) => {
   }
   return (
     <div className="LoginFormContainer">
-      <form onSubmit={() => { 
-         handleSubmit(formValues.name, formValues.password)
-        setFormValues({name: '', password: ''})
-      }} className="LoginForm">
+      <form onSubmit={(e) => handleSubmit(e) } className="LoginForm">
         <input type="text" placeholder="Username:" name="name" onChange={handleChange} value={formValues.name}/>
         <input data-testid='password-input' type="password" placeholder="Password:" name="password" onChange={handleChange} value={formValues.password}/>
-        <button onClick={() => () => { 
-          handleSubmit(formValues.name, formValues.password)
-          setFormValues({name: '', password: ''})
-        }} type="submit" className="loginBTN">Log In</button>
+        <button onClick={() => handleSubmit() } className="loginBTN">Log In</button>
         <button onClick={() => history.push('/signup')} className="signupBTN">Sign Up</button>
       </form>
     </div>

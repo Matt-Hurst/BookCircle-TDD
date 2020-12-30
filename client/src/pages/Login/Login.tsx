@@ -6,12 +6,12 @@ import { LoginForm } from '../../components/LoginForm'
 import './Login.scss'
 
 const Login: React.FC = () => {
-  const history = useHistory();
+  // const history = useHistory();
 
-  async function handleSubmit (name: string, password: string, e?: React.FormEvent<HTMLFormElement>) {
-    e && e.preventDefault();
+  async function handleSubmit (name: string, password: string, /*e: React.FormEvent<HTMLFormElement>*/) {
+    // e.preventDefault();
     await login(name, password);
-    history.go(0)
+    // history.push('/')
   }
 
   return (
@@ -21,7 +21,7 @@ const Login: React.FC = () => {
       <span className="LoginPageSpan"></span>
       <h2 className="LoginPageH2">Welcome</h2>
     </div>
-    <LoginForm handleSubmit={handleSubmit}/>
+    <LoginForm loginFunc={handleSubmit}/>
   </div>
   )
 }

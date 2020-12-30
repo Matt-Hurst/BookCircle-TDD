@@ -1,12 +1,16 @@
 import { Book } from '../interfaces'
 import axios from 'axios'
 
+
+export const URL = 'http://localhost:3001/' 
+
 export const retrieveTokenFromLocalStorage = (): string => {
   return localStorage.getItem('token') || ''
 }
 
-export const login = async (name: string, password: string): Promise<string> => {
-  const { data } = await axios.post(`${URL}availableBooks`, {
+export const login = async (name: string, password: string) => {
+  console.log('LOGIN FUNC: ', name, password)
+  const { data } = await axios.post(`${URL}login`, {
     name,
     password
   })
