@@ -41,8 +41,16 @@ const Dashboard: React.FC<DashboardProps> = (
   const [friendsBookClicked, setFriendsBookClicked] = useState(false)
   const [clickedBook, setClickedBook] = useState<Book>()
 
+  const getUserData = async () => {
+    try {
+      await getAvailableBooks()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
-    getAvailableBooks()
+    getUserData()
   }, [])
 
   const messagesContent = messages.length ? 

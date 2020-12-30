@@ -11,8 +11,8 @@ const LoginForm: React.FC<LoginFormProps> = ({loginFunc}) => {
   const [formValues, setFormValues] = useState({name: '', password: ''})
   const history = useHistory();
 
-  const handleSubmit = async (e?:React.FormEvent<HTMLFormElement>) => {
-    e && e.preventDefault()
+  const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     await loginFunc(formValues.name, formValues.password)
     setFormValues({name: '', password: ''})
     history.go(0)
@@ -29,7 +29,7 @@ const LoginForm: React.FC<LoginFormProps> = ({loginFunc}) => {
       <form onSubmit={(e) => handleSubmit(e) } className="LoginForm">
         <input type="text" placeholder="Username:" name="name" onChange={handleChange} value={formValues.name}/>
         <input data-testid='password-input' type="password" placeholder="Password:" name="password" onChange={handleChange} value={formValues.password}/>
-        <button onClick={() => handleSubmit() } className="loginBTN">Log In</button>
+        <button type='submit' className="loginBTN">Log In</button>
         <button onClick={() => history.push('/signup')} className="signupBTN">Sign Up</button>
       </form>
     </div>

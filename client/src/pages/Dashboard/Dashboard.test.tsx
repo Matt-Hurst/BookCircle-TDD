@@ -22,11 +22,13 @@ describe('Dashboard page', () => {
     expect(screen.getByText('Recent activity:')).toBeInTheDocument()
   })
   it('Should render "No new messages" text when no messages', () => {
-    store = mockStore({
+    const newStore = mockStore({
       target: 10,
-      messages: []
+      messages: [],
+      books: mockBooks,
+      availableBooks: mockBooks
     })
-    render(<Provider store={store}><Dashboard /></Provider>)
+    render(<Provider store={newStore}><Dashboard /></Provider>)
     expect(screen.getByText('No new messages')).toBeInTheDocument()
   })
   it('Should render all messages', () => {
@@ -36,10 +38,6 @@ describe('Dashboard page', () => {
   it('Should render target component', () => {
     render(<Provider store={store}><Dashboard /></Provider>)
     expect(screen.getByText('Books read this year:')).toBeInTheDocument()
-  })
-  it('Should render all available books', () => {
-    render(<Provider store={store}><Dashboard /></Provider>)
-    expect(screen.getAllByTestId('container-book').length).toBe(mockBooks.length)
   })
 })
 

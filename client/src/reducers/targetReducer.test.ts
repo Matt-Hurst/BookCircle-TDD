@@ -4,7 +4,7 @@ import { SET_TARGET } from '../actions/targetActions'
 describe('targetReducer', () => {
   it('Should return the initial state', () => {
     const newState = targetReducer(undefined, {})
-    expect(newState).toEqual({})
+    expect(newState).toEqual(0)
   })
   it('Should handle SET_TARGET', () => {
     const updateTargetAction = {

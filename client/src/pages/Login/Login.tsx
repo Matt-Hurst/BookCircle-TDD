@@ -1,17 +1,13 @@
 import React from 'react'
-import { useHistory } from "react-router-dom";
 import { login } from '../../helpers'
 import { LoginForm } from '../../components/LoginForm'
 
 import './Login.scss'
 
 const Login: React.FC = () => {
-  // const history = useHistory();
 
-  async function handleSubmit (name: string, password: string, /*e: React.FormEvent<HTMLFormElement>*/) {
-    // e.preventDefault();
+  async function handleSubmit (name: string, password: string) {
     await login(name, password);
-    // history.push('/')
   }
 
   return (

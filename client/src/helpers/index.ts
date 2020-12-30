@@ -9,12 +9,10 @@ export const retrieveTokenFromLocalStorage = (): string => {
 }
 
 export const login = async (name: string, password: string) => {
-  console.log('LOGIN FUNC: ', name, password)
   const { data } = await axios.post(`${URL}login`, {
     name,
     password
   })
-  console.log('LOGIN FUNCTION IN HELPER FOLDER DATA: ', data )
   localStorage.setItem('token', data.token)
   return data;
 }

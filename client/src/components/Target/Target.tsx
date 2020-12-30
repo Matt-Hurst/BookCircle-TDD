@@ -16,8 +16,16 @@ interface TargetProps {
 
 const Target: React.FC<TargetProps> = ({ target, books, getTarget, setUserTarget }) => {
   
+  const onLoad = async () => {
+    try {
+      await getTarget()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
-    getTarget()
+    onLoad()
   }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   const [isOpen, setIsOpen] = useState(false)

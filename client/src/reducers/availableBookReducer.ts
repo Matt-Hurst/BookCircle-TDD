@@ -1,7 +1,8 @@
 import { SET_AVAILABLE_BOOKS } from '../actions/bookActions'
-import { Action } from '../interfaces'
+import { Action, Book } from '../interfaces'
 
-const bookReducer = (state = [], action: Action) => {
+
+const bookReducer = (state: Book[] = [], action: Action) => {
   switch(action.type) {
     case SET_AVAILABLE_BOOKS:
       return action.payload
