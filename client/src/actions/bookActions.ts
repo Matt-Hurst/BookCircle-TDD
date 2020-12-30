@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { retrieveTokenFromLocalStorage } from '../helpers'
+import { URL } from '../helpers'
+
 export const SET_AVAILABLE_BOOKS = 'SET_AVAILABLE_BOOKS';
-const URL = 'http://localhost:3001/'
 
 export const getAvailableBooks = () => async (dispatch: Function) => {
   try {
