@@ -20,22 +20,17 @@ describe('BookSearch page', () => {
     render(<BookSearch />)
     expect(screen.getByTestId('book-search-page')).toBeInTheDocument()
   })
-  it('Should render results of successful search', () => {
+  it('Should change searchBy component state from "title" to "author" when "author button clicked", and vice versa', () => {
     render(<BookSearch />)
-    const searchBar = screen.getByTestId('search-input')
-    const searchButton = screen.getByTestId('search-button')
-    expect(screen.queryByText("Death's End")).toBeNull()
-    act(() => {
-      fireEvent.change(searchBar, {
-      target: { value: 'Death'}
-    })})
-    expect(screen.getByDisplayValue('Death')).toBeInTheDocument()
-    act(() => {
-      searchButton.click()
-    })
-    expect(screen.getByText("Death's End")).toBeInTheDocument()
+    const authorBtn = screen.getByTestId('search-by-author-button')
+    const titelBtn = screen.getByTestId('search-by-title-button')
+    expect(screen.getByPlaceholderText('title')).toBeInTheDocument()
+    authorBtn.click()
+    expect(screen.getByPlaceholderText('author')).toBeInTheDocument()
+    titelBtn.click()
+    expect(screen.getByPlaceholderText('title')).toBeInTheDocument()
   })
-  it('Should update results after successful search', () => {
+  it('Should render results of successful search', async () => {
     render(<BookSearch />)
     const searchBar = screen.getByTestId('search-input')
     const searchButton = screen.getByTestId('search-button')
@@ -48,7 +43,22 @@ describe('BookSearch page', () => {
     act(() => {
       searchButton.click()
     })
-    expect(screen.getByText("Death's End")).toBeInTheDocument()
+    expect(await screen.findByText("Death's End")).toBeInTheDocument()
+  })
+  it('Should update results after successful search', async () => {
+    render(<BookSearch />)
+    const searchBar = screen.getByTestId('search-input')
+    const searchButton = screen.getByTestId('search-button')
+    expect(screen.queryByText("Death's End")).toBeNull()
+    act(() => {
+      fireEvent.change(searchBar, {
+      target: { value: 'Death'}
+    })})
+    expect(screen.getByDisplayValue('Death')).toBeInTheDocument()
+    act(() => {
+      searchButton.click()
+    })
+    expect(await screen.findByText("Death's End")).toBeInTheDocument()
     act(() => {
       fireEvent.change(searchBar, {
       target: { value: 'Foundation'}
@@ -57,8 +67,8 @@ describe('BookSearch page', () => {
     act(() => {
       searchButton.click()
     })
+    expect(await screen.findByText("Foundation and Earth")).toBeInTheDocument()
     expect(screen.queryByText("Death's End")).toBeNull()
-    expect(screen.getByText("Foundation and Earth")).toBeInTheDocument()
   })
 })
 
