@@ -6,6 +6,7 @@ import {
 } from "react-router-dom"
 
 import { Header } from './components/AuthHeader'
+import { BookSearch } from './pages/BookSearch';
 import { Dashboard } from './pages/Dashboard';
 
 
@@ -16,6 +17,9 @@ function AuthenticatedApp() {
       <Switch>
         <Route path="/" exact>
           <Dashboard />
+        </Route>
+        <Route path="/search" exact>
+          <BookSearch />
         </Route>
       </Switch>
     </Router>

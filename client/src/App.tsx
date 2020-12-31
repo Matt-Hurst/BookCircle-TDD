@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AuthenticatedApp from './AuthenticatedApp';
 import './App.scss';
-import { retrieveTokenFromLocalStorage } from './helpers';
+import { retrieveTokenFromLocalStorage } from './auth';
 import { UnAuthenticatedApp } from './UnAuthenticatedApp';
 
 function App() {

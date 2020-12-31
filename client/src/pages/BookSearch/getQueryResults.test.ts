@@ -1,6 +1,6 @@
 import { getQueryResults } from './getQueryResults'
 import moxios from 'moxios'
-import { mockBooks } from '../../mocks'
+import { mockedSearchedBooks, mockedResults } from '../../mocks'
 
 
 describe('getQueryResults in BookSearch Folder', () => {
@@ -11,16 +11,16 @@ describe('getQueryResults in BookSearch Folder', () => {
     moxios.uninstall()
   })
   
-  it('Should make axios request and then return array of books', async () => {
+  it('Should make axios request and then return array of searchedBooks', async () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: mockBooks
+        response: mockedSearchedBooks
       })
     })
     const result = await getQueryResults('Death', 'Author')
-    expect(result).toEqual(mockBooks)
+    expect(result).toEqual(mockedResults)
   })
 
 })

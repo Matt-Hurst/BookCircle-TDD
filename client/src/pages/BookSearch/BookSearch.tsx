@@ -13,7 +13,8 @@ const BookSearch = () => {
   }
   const handleClick = async () => {
     const results = await getQueryResults(searchQuery, searchBy)
-    setSearchResult(results)
+    await setSearchResult(results)
+    await setSearchQuery('')
   }
 
   return (
@@ -22,7 +23,18 @@ const BookSearch = () => {
       <button data-testid='search-button' onClick={handleClick}>search</button>
       <button data-testid='search-by-title-button' onClick={() => setSearchBy('title')}>title</button>
       <button data-testid='search-by-author-button' onClick={() => setSearchBy('author')}>author</button>
-      {searchResult && <p>{searchResult}</p>}
+      {searchResult && searchResult.map(book => {
+        return (
+          <div key={book.id}>
+            {book.imageUrl ? <img src={book.imageUrl} alt={`${book.title} book cover`}/> : <div></div>}
+            <div>
+              <h3>{book.title}</h3>
+              {book.authors ? <p>{`by ${book.authors}`}</p>: <div></div>}
+              {book.genre ? <h4>{book.genre}</h4> : <div></div>}
+            </div>
+          </div>
+        )
+      })}
     </div>
   )
 }

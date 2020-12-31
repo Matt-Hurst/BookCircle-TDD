@@ -2,6 +2,7 @@ import React from 'react'
 import { render, screen, fireEvent, act } from '@testing-library/react'
 import BookSearch from './BookSearch'
 import { getQueryResults } from './getQueryResults'
+import { mockBooks } from '../../mocks'
 
 jest.mock('./getQueryResults')
 
@@ -9,8 +10,9 @@ describe('BookSearch page', () => {
 
   beforeEach(() => {
     (getQueryResults as jest.Mock)
-      .mockImplementationOnce(() => "Death's End")
-      .mockImplementationOnce(() => "Foundation and Earth")
+      .mockImplementationOnce(() => [mockBooks[0]])
+      .mockImplementationOnce(() => [mockBooks[1]])
+      .mockImplementationOnce(() => mockBooks)
   })
   afterEach(() => {
     jest.resetAllMocks()
@@ -69,6 +71,38 @@ describe('BookSearch page', () => {
     })
     expect(await screen.findByText("Foundation and Earth")).toBeInTheDocument()
     expect(screen.queryByText("Death's End")).toBeNull()
+  })
+  it('Should render all book results', async () => { 
+    render(<BookSearch />)
+    const searchBar = screen.getByTestId('search-input')
+    const searchButton = screen.getByTestId('search-button')
+    act(() => {
+      fireEvent.change(searchBar, {
+      target: { value: 'Death'}
+    })})
+    act(() => {
+      searchButton.click()
+      searchButton.click()
+      searchButton.click()
+    })
+    const booksRendered = await screen.findAllByRole('img')
+    screen.debug()
+    expect(booksRendered.length).toBe(mockBooks.length)
+  })
+  it('Should clear search input box when search is executed', async () => {
+    render(<BookSearch />)
+    const searchBar = screen.getByTestId('search-input')
+    const searchButton = screen.getByTestId('search-button')
+    expect(screen.queryByDisplayValue("Death")).not.toBeInTheDocument()
+    act(() => {
+      fireEvent.change(searchBar, {
+      target: { value: 'Death'}
+    })})
+    expect(screen.getByDisplayValue('Death')).toBeInTheDocument()
+    act(() => {
+      searchButton.click()
+    })
+    expect(await screen.findByDisplayValue("")).toBeInTheDocument()
   })
 })
 
