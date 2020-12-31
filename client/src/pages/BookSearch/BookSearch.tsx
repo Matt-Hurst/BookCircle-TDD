@@ -7,6 +7,7 @@ const BookSearch = () => {
   const [searchResult, setSearchResult] = useState<Book[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [searchBy, setSearchBy] = useState('title')
+  const [addBookClicked, setAddBookClicked] = useState<boolean>(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
@@ -31,10 +32,16 @@ const BookSearch = () => {
               <h3>{book.title}</h3>
               {book.authors ? <p>{`by ${book.authors}`}</p>: <div></div>}
               {book.genre ? <h4>{book.genre}</h4> : <div></div>}
+              <button onClick={() => setAddBookClicked(true)}>add to bookcase</button>
             </div>
           </div>
         )
       })}
+      {addBookClicked && (
+        <div data-testid='add-book-modal'>
+        
+        </div>
+      )}
     </div>
   )
 }

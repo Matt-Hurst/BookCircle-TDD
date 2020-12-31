@@ -104,5 +104,22 @@ describe('BookSearch page', () => {
     })
     expect(await screen.findByDisplayValue("")).toBeInTheDocument()
   })
+  it('Should render AddBook modal when a search result "add book" button is clicked', async () => {
+    render(<BookSearch />)
+    const searchBar = screen.getByTestId('search-input')
+    const searchButton = screen.getByTestId('search-button')
+    act(() => {
+      fireEvent.change(searchBar, {
+      target: { value: 'Death'}
+    })})
+    expect(screen.getByDisplayValue('Death')).toBeInTheDocument()
+    act(() => {
+      searchButton.click()
+    })
+    expect(await screen.findByText('add to bookcase')).toBeInTheDocument()
+    const addBookButton = screen.getByText('add to bookcase')
+    addBookButton.click()
+    expect(screen.getByTestId('add-book-modal')).toBeInTheDocument()
+  })
 })
 
