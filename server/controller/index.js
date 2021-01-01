@@ -58,9 +58,9 @@ exports.createUserCtrl = async (req, res) => {
 exports.addBookCrtl = async (req, res) => {
   try {
     const newBook = { ...req.body.book, id: uuidv4() };
-    const query = { name: req.body.user };
+    const { _id } = req.user ;
     const options = { new: true };
-    const user = await User.findOneAndUpdate(query, {
+    const user = await User.findOneAndUpdate({ _id }, {
       $push: {
         books: {
           $each: [newBook],
