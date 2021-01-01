@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Book } from '../../interfaces'
 import { getQueryResults } from './getQueryResults'
-
+import { AddBookModal } from '../../components/AddBookModal'
 
 const BookSearch = () => {
   const [searchResult, setSearchResult] = useState<Book[]>([])
@@ -38,9 +38,7 @@ const BookSearch = () => {
         )
       })}
       {addBookClicked && (
-        <div data-testid='add-book-modal'>
-        
-        </div>
+        <AddBookModal closeModalFunc={() => setAddBookClicked(false)}/>
       )}
     </div>
   )

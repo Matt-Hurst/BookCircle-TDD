@@ -86,7 +86,6 @@ describe('BookSearch page', () => {
       searchButton.click()
     })
     const booksRendered = await screen.findAllByRole('img')
-    screen.debug()
     expect(booksRendered.length).toBe(mockBooks.length)
   })
   it('Should clear search input box when search is executed', async () => {
