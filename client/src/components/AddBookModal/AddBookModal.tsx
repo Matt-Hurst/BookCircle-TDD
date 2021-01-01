@@ -126,7 +126,11 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
           setModalContent(modalContent + 1)
         }
         }
-        >next</button> : <button onClick={() => addBookFunction(userInput)}>add book</button>}
+        >next</button> : <button onClick={() => {
+          addBookFunction(userInput)
+          closeModalFunc()
+        }
+        }>add book</button>}
       </div>
     </div>
   )

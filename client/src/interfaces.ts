@@ -18,7 +18,7 @@ export interface Book {
   availableToBorrow: boolean;
   genre: string;
   star: boolean;
-  id: string;
+  id?: string;
   friendName?: string;
 }
 

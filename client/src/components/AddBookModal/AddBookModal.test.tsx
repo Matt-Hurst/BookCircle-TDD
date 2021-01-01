@@ -68,7 +68,7 @@ describe('AddBookModal', () => {
     nextBtn.click()
     expect(screen.getByText('Is this book a must read?')).toBeInTheDocument()
   })
-  it('Should render add book button on fifth prompt, and submit addBookFunction onClick', () => {
+  it('Should render add book button on fifth prompt, and submit addBookFunction onClick, then closeModalFunc is called', () => {
     render(<AddBookModal closeModalFunc={closeModalFunc} addBookFunction={addBookFunction}/>)
     const nextBtn = screen.getByRole('button',{name:'next'})
     nextBtn.click()
@@ -78,6 +78,7 @@ describe('AddBookModal', () => {
     const addBookButton = screen.getByRole('button', {name: 'add book'})
     expect(addBookButton).toBeInTheDocument()
     addBookButton.click()
-    expect(addBookFunction).toHaveBeenCalled()
+    expect(addBookFunction).toHaveBeenCalledTimes(1)
+    expect(closeModalFunc).toHaveBeenCalledTimes(1)
   })
 })
