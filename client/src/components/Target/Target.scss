@@ -1,0 +1,32 @@
+@import '../../App.scss';
+
+.target-grand-wrapper {
+  display: flex;
+  justify-content: center;
+
+  &__content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: $S;
+    width: 40vw;
+
+    h3 {
+      font-weight: normal;
+      font-size: $S;
+    }
+
+    &__edit-target-btn {
+      background-color: $primary-dark;
+      color: $background-color;
+      border-radius: 10px;
+      border: none;
+      padding: 0.5rem 0.7rem;
+      margin-top: $XS;
+      font-size: $XS;
+      font-weight: bold;
+    }
+  }
+}

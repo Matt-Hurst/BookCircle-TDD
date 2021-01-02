@@ -6,6 +6,7 @@ import { ProgressBar } from '../ProgressBar'
 import { SetTargetModal } from '../SetTargetModal'
 import { calculateBooksReadThisYear } from '../../helpers'
 
+import './Target.scss'
 
 interface TargetProps {
   target: number;
@@ -29,12 +30,15 @@ const Target: React.FC<TargetProps> = ({ target, books, getTarget, setUserTarget
   };
 
   const content = target ? (
-    <div>
+    <div className='target-grand-wrapper'>
       <ProgressBar completed={(booksReadThisYear / target) * 100} />
-      <div>
-        <p>Books read this year:</p>
-        <p>{booksReadThisYear}/{target}</p>
-        <button onClick={toggleModal}>edit</button>
+      <div className='target-grand-wrapper__content-container'>
+        <h3>Books read this year:</h3>
+        <h3>{booksReadThisYear}/{target}</h3>
+        <button 
+          className='target-grand-wrapper__content-container__edit-target-btn'
+          onClick={toggleModal}
+        >edit</button>
       </div>
     </div>
   ) : (
