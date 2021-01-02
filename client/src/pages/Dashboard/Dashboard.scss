@@ -1,0 +1,13 @@
+@import '../../App.scss';
+
+.dashboard-grand-wrapper {
+
+  margin: 0 $M;
+
+  h1 {
+    color: $primary-dark;
+    font-weight: 300;
+    border-bottom: 5px solid $primary-dark;
+    margin: $XS 0;
+  }
+}

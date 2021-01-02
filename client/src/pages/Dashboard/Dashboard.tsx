@@ -16,6 +16,8 @@ import { MessageComponent } from '../../components/Message'
 import { TargetDisplay } from '../../components/Target'
 import { Book, Message } from '../../interfaces'
 
+import './Dashboard.scss'
+
 interface DashboardProps {
   availableBooks: Book[];
   messages: Message[];
@@ -70,12 +72,12 @@ const Dashboard: React.FC<DashboardProps> = (
   : <p>No new messages</p>
 
   return (
-    <div>
-      <h2>Recent activity:</h2>
+    <div className='dashboard-grand-wrapper'>
+      <h1>Recent activity:</h1>
       {messagesContent}
-      <h2>Goal progress:</h2>
+      <h1>Goal progress:</h1>
       <TargetDisplay />
-      <h2>Friends books available to borrow:</h2>
+      <h1>Friends books available to borrow:</h1>
       <BookShelf books={availableBooks} handleClick={(book: Book) => {
         setClickedBook(book)
         setFriendsBookClicked(true)
