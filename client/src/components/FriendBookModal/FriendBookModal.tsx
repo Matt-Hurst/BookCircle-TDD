@@ -40,7 +40,7 @@ const FriendBookModal: React.FC<FriendBookModalProps> = ({book, closeModal, requ
               className='friend-book-modal-grand-wrapper__pop-out-container__content-div__request-btn' 
               onClick={async () => {
                 setBookRequested(true)
-                await requestBook(book)
+                await requestBook(book.friendId, book.id)
               }
             }>request book</button>}
             {bookRequested && <button

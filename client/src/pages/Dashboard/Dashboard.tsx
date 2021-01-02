@@ -51,7 +51,7 @@ const Dashboard: React.FC<DashboardProps> = (
   useEffect(() => {
     getAvailableBooks()
     getUserData()
-  }, [])// eslint-disable-line
+  }, [availableBooks])// eslint-disable-line
   const messagesContent = messages.length ? 
   (
     <div>

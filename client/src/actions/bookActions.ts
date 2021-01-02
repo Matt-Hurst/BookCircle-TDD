@@ -43,7 +43,11 @@ export const requestBook = (friendId: string, bookId: string) => async (dispatch
   try {
     const { status } = await axios({
       method: 'post',
-      url: `${URL}availableBooks`,
+      url: `${URL}requestBook`,
+      data: {
+        bookId, 
+        friendId
+      },
       headers: {'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}`}
     })
     if(status === 200) {

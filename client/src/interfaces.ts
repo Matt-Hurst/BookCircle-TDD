@@ -20,6 +20,7 @@ export interface Book {
   star: boolean;
   id?: string;
   friendName?: string;
+  friendId?: string;
 }
 
 export interface Action {

@@ -47,6 +47,7 @@ describe('FriendBookModal', () => {
     render(<FriendBookModal book={bookProp} closeModal={closeModal} requestBook={requestBook}/>)
     fireEvent.click(screen.getByRole('button'))
     expect(await screen.findByText('book requested')).toBeInTheDocument()
+    expect(screen.queryByText('request book')).toBeNull()
   })
 })
 

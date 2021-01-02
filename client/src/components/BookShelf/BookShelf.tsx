@@ -20,7 +20,7 @@ const BookShelf: React.FC<BookShelfProps> = ({books, handleClick}) => {
     </div>
   )
   :
-  <p>no books on the shelf</p>
+  <p className='no-books-text'>no books on the shelf</p>
 
   return (
     <>
