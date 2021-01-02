@@ -2,13 +2,10 @@
 
 .dashboard-grand-wrapper {
 
-  margin: 0 $M;
+  margin: $page-margin;
   position: relative;
 
   h1 {
-    color: $primary-dark;
-    font-weight: 300;
-    border-bottom: 5px solid $primary-dark;
-    margin: $XS 0;
+    @include pageTitle;
   }
 }

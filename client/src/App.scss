@@ -16,11 +16,20 @@ $L: 2rem;
 $XL: 2.4rem;
 $XXL: 2.8rem;
 
+$page-margin: 0 $M;
+
 @mixin button {
   background-color: $primary-dark;
   color: $background-color;
   border-radius: 10px;
   border:none;
+}
+
+@mixin pageTitle {
+  color: $primary-dark;
+  font-weight: 300;
+  border-bottom: 5px solid $primary-dark;
+  margin: $XS 0;
 }
 
 $standard-border-radius: 10px;

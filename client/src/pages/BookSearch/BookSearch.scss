@@ -1,0 +1,118 @@
+@import '../../App.scss';
+
+.booksearch-grand-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: $page-margin;
+  
+
+  h1 {
+    @include pageTitle;
+  }
+
+  &__search-container {
+    display: flex;
+    justify-content: center;
+
+    &__input {
+      padding: 10px 0 10px 5px;
+      flex: 2;
+      background-color: $background-color;
+      border: none;
+      border: 5px solid $primary-dark;
+      border-radius: 10px 0px 0px 10px;
+    }
+
+    &__btn {
+      padding: 5px 5px 5px 5px;
+      flex: 1;
+      border: none;
+      background-color: $primary-dark;
+      color: $background-color;
+      font-size: $XS;
+      border: 5px solid $primary-dark;
+      border-radius: 0px 10px 10px 0px;
+    }
+  }
+
+
+  &__search-by-btn-container {
+    display: flex;
+    justify-content: center;
+
+    button {
+      margin: 1rem;
+      border: none;
+      border-radius: 5px;
+      padding: 0.5rem 0rem;
+      width: 6rem;
+      font-weight: bold;
+      font-size: 1rem;
+    }
+  }
+
+  &__book-result-container {
+    display: flex;
+    margin: $S 0;
+    padding: $XS;
+    border: 6px solid $border-color;
+    border-radius: $standard-border-radius;
+    align-items: center;
+
+    img {
+      max-height: 140px;
+      max-width: 94px;
+      margin-right: 1rem;
+    }
+
+    &__content-and-btn {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h3 {
+        margin: $XXS 0 0.2rem 0;
+        font-size: $XS;
+      }
+      p {
+        margin-bottom: $XXS;
+      }
+      h4 {
+        margin-bottom: $XS;
+        font-size: $XS;
+        font-weight: 300;
+      }
+      button {
+        @include button;
+        padding: 0.5rem 0.7rem;
+        font-size: $XS;
+      }
+    }
+
+    &__stand-in-cover {
+      max-height: 140px;
+      max-width: 94px;
+      min-height: 140px;
+      min-width: 94px;
+      background-color: #fff;
+      border: 2px solid #000;
+      margin-right: 1rem;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      h3 {
+        margin: 0.2rem;
+      }
+    }
+  }
+}
+
+.selectedSearchMethod {
+  background-color: $primary-red;
+  color: $background-color;
+}
+
+.otherSearchMethod {
+  background-color: $primary-dark;
+  color: $background-color;
+}
