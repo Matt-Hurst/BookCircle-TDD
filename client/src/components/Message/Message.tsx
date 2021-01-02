@@ -2,6 +2,8 @@ import React from 'react'
 import { IoIosCheckmarkCircle, IoIosCloseCircle } from "react-icons/io";
 import { Message } from '../../interfaces'
 
+import './Message.scss'
+
 interface MessageComponentProps {
   message: Message;
   removeMessage: Function;
@@ -25,21 +27,23 @@ const MessageComponent: React.FC<MessageComponentProps> = (
   ) =>  {
 
   return (
-    <div data-testid='message-component'>
+    <div data-testid='message-component' className='message-grand-wrapper'>
       <p>{message.message}</p>
       {message.type === 'resolved' && (
-        <div>
+        <div className='message-grand-wrapper__request-btns-container'>
           <IoIosCloseCircle 
-            data-testid='dismiss-icon' 
+            data-testid='dismiss-icon'
+            className='message-grand-wrapper__request-btns-container__resolved-btn' 
             onClick={() => removeMessage(userId, message.createdAt)}
           />
         </div>   
       )
       }
       {(message.type === 'friendRequest' || message.type === 'bookRequest') && (
-        <div>
+        <div className='message-grand-wrapper__request-btns-container'>
           <IoIosCheckmarkCircle 
             data-testid='approve-icon' 
+            className='message-grand-wrapper__request-btns-container__approve-btn'
             onClick={() => {
               if (message.type === 'friendRequest') {
                 confirmFriendRequest(message.senderId, userId, message.createdAt)
@@ -50,6 +54,7 @@ const MessageComponent: React.FC<MessageComponentProps> = (
           />
           <IoIosCloseCircle 
             data-testid='reject-icon'
+            className='message-grand-wrapper__request-btns-container__reject-btn'
             onClick={() => {
               if (message.type === 'friendRequest') {
                 rejectFriendRequest(message.senderId, userId, message.createdAt)

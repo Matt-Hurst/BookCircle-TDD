@@ -1,0 +1,34 @@
+@import '../../App.scss';
+
+.message-grand-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: $L $XXS;
+  padding: $S $XS;
+  border: 6px solid $border-color;
+  border-radius: 10px;
+
+  p {
+    margin-right: $XXS;
+  }
+
+  &__request-btns-container {
+    display: flex;
+
+    &__approve-btn,
+    &__reject-btn,
+    &__resolved-btn {
+      width: 30px;
+      height: 30px;
+    }
+
+    &__approve-btn {
+      color: green;
+    }
+    &__reject-btn {
+      color: red;
+    }
+  }
+}
