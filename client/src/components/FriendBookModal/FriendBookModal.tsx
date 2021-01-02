@@ -39,13 +39,13 @@ const FriendBookModal: React.FC<FriendBookModalProps> = ({book, closeModal, requ
             !bookRequested && <button
               className='friend-book-modal-grand-wrapper__pop-out-container__content-div__request-btn' 
               onClick={async () => {
-                await requestBook(book)
                 setBookRequested(true)
+                await requestBook(book)
               }
             }>request book</button>}
             {bookRequested && <button
               className='friend-book-modal-grand-wrapper__pop-out-container__content-div__requested-btn' 
-            >request book</button>}
+            >book requested</button>}
           </div>
           <div className="friend-book-modal-grand-wrapper__pop-out-container__display" >
             <img src={book.imageUrl} alt={book.title}
