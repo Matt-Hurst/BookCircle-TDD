@@ -41,13 +41,13 @@ describe('FriendBookModal', () => {
     fireEvent.click(screen.getByRole('button'))
     expect(requestBook).toHaveBeenCalledTimes(1)
   })
-  it('Should  trigger closeModal function if "request book" button is clicked', async () => {
-    const bookProp = mockBooks[0]
-    bookProp.availableToBorrow = true
-    render(<FriendBookModal book={bookProp} closeModal={closeModal} requestBook={requestBook}/>)
-    fireEvent.click(screen.getByRole('button'))
-    expect(await closeModal).toHaveBeenCalledTimes(1)
-  })
+  // it('Should  trigger closeModal function if "request book" button is clicked', async () => {
+  //   const bookProp = mockBooks[0]
+  //   bookProp.availableToBorrow = true
+  //   render(<FriendBookModal book={bookProp} closeModal={closeModal} requestBook={requestBook}/>)
+  //   fireEvent.click(screen.getByRole('button'))
+  //   expect(await closeModal).toHaveBeenCalledTimes(1)
+  // })
 })
 
 

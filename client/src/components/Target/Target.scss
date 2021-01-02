@@ -19,10 +19,7 @@
     }
 
     &__edit-target-btn {
-      background-color: $primary-dark;
-      color: $background-color;
-      border-radius: 10px;
-      border: none;
+      @include button;
       padding: 0.5rem 0.7rem;
       margin-top: $XS;
       font-size: $XS;

@@ -16,6 +16,15 @@ $L: 2rem;
 $XL: 2.4rem;
 $XXL: 2.8rem;
 
+@mixin button {
+  background-color: $primary-dark;
+  color: $background-color;
+  border-radius: 10px;
+  border:none;
+}
+
+$standard-border-radius: 10px;
+
 * {
   margin: 0;
   padding: 0;
