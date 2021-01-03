@@ -46,7 +46,7 @@ const MessageComponent: React.FC<MessageComponentProps> = (
             className='message-grand-wrapper__request-btns-container__approve-btn'
             onClick={() => {
               if (message.type === 'friendRequest') {
-                confirmFriendRequest(message.senderId, userId, message.createdAt)
+                confirmFriendRequest(message.senderId, message.createdAt)
               } else if (message.type === 'bookRequest') {
                 confirmBookRequest(message.createdAt, userId, message.senderId, message.title)
               }

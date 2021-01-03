@@ -116,8 +116,8 @@ exports.addFriendCtrl = async (req, res) => {
 
 exports.confirmFriendCtrl = async (req, res) => {
   try {
-    const { senderId, userId, createdAt } = req.body;
-
+    const { senderId, createdAt } = req.body;
+    const userId = req.user._id;
     const responder = await User.findByIdAndUpdate(userId, {
       $push: { friends: senderId },
       $pull: { activityLog: { createdAt: createdAt } }
