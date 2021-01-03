@@ -1,1 +1,67 @@
-@import '../../App.scss'
+@import '../../App.scss';
+
+.addbook-modal-grand-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__close-btn {
+    @include close-modal-button;
+  }
+
+  &__greyed-background-div {
+    @include greyedBackground;
+  }
+
+  &__pop-out-container {
+    @include pop-out-box;
+    min-height: 40vh;
+    min-width: 90vw;
+    max-width: 90vw;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    h2 {
+      margin: $XL $XXS;
+      font-size: $S;
+    }
+
+    textarea {
+      height: 100px;
+      width: 60vw;
+    }
+
+    &__checkbox-div {
+      display: flex;
+      align-items: center;
+      label {
+        font-size: $S;
+        flex: 2;
+      }
+      input {
+        flex: 1;
+        width: $M;
+        height: $M;
+      }
+    }
+
+    &__button-div {
+      display: flex;
+      width: 100%;
+      justify-content: space-evenly;
+
+      button {
+        margin: $M 0;
+        @include button;
+        padding: 0.5rem 1rem;
+      }
+      #add-book-btn {
+        background-color: green;
+      }
+    }
+
+  }
+
+}
