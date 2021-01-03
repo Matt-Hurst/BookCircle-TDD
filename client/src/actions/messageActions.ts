@@ -58,14 +58,13 @@ export const acceptFriendRequest = (senderId: string, userId: string, createdAt:
   }
 }
 
-export const rejectFriendRequest = (senderId: string, userId: string, createdAt: string) => async (dispatch: Function) => {
+export const rejectFriendRequest = (senderId: string, createdAt: string) => async (dispatch: Function) => {
   try {
     const { data } = await axios({
       method: 'delete',
       url: `${URL}rejectFriendRequest`,
       data: {
         senderId,
-        userId,
         createdAt
       },
       headers: { 'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}` }

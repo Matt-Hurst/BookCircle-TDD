@@ -34,7 +34,7 @@ const MessageComponent: React.FC<MessageComponentProps> = (
           <IoIosCloseCircle 
             data-testid='dismiss-icon'
             className='message-grand-wrapper__request-btns-container__resolved-btn' 
-            onClick={() => removeMessage(userId, message.createdAt)}
+            onClick={() => removeMessage(message.senderId, userId, message.createdAt)}
           />
         </div>   
       )
@@ -57,7 +57,7 @@ const MessageComponent: React.FC<MessageComponentProps> = (
             className='message-grand-wrapper__request-btns-container__reject-btn'
             onClick={() => {
               if (message.type === 'friendRequest') {
-                rejectFriendRequest(message.senderId, userId, message.createdAt)
+                rejectFriendRequest(message.senderId, message.createdAt)
               } else if (message.type === 'bookRequest') {
                 rejectBookRequest(message.createdAt, userId, message.senderId, message.book, message.title)
               }

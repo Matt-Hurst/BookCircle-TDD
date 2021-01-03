@@ -142,7 +142,8 @@ exports.confirmFriendCtrl = async (req, res) => {
 
 exports.rejectFriendRequestCtrl = async (req, res) => {
   try {
-    const { createdAt, userId, senderId } = req.body
+    const { createdAt, senderId } = req.body
+    const userId = req.user._id
     const responder = await User.findByIdAndUpdate(userId, {
       $pull: { activityLog: { createdAt: createdAt } }
     }, { new: true })
