@@ -4,6 +4,8 @@ import { getQueryResults } from './getQueryResults'
 import { AddBookModal } from '../../components/AddBookModal'
 import { addBook } from '../../actions/bookActions'
 
+import './BookSearch.scss'
+
 const BookSearch = () => {
   const [searchResult, setSearchResult] = useState<Book[]>([])
   const [searchQuery, setSearchQuery] = useState('')
@@ -20,19 +22,42 @@ const BookSearch = () => {
   }
 
   return (
-    <div data-testid='book-search-page'>
-      <input data-testid='search-input' type="text" onChange={handleChange} value={searchQuery} placeholder={searchBy}/>
-      <button data-testid='search-button' onClick={handleClick}>search</button>
-      <button data-testid='search-by-title-button' onClick={() => setSearchBy('title')}>title</button>
-      <button data-testid='search-by-author-button' onClick={() => setSearchBy('author')}>author</button>
+    <div data-testid='book-search-page' className='booksearch-grand-wrapper'>
+      <h1>Search:</h1>
+      <div className='booksearch-grand-wrapper__search-container'>
+        <input 
+          data-testid='search-input' 
+          className='booksearch-grand-wrapper__search-container__input'
+          type="text" 
+          onChange={handleChange} 
+          value={searchQuery} 
+          placeholder={searchBy}/>
+        <button 
+          data-testid='search-button'
+          className='booksearch-grand-wrapper__search-container__btn' 
+          onClick={handleClick}
+        >search</button>
+      </div>
+      <div className='booksearch-grand-wrapper__search-by-btn-container'>
+        <button 
+          data-testid='search-by-title-button' 
+          className={searchBy === 'title' ? "selectedSearchMethod" : "otherSearchMethod"}
+          onClick={() => setSearchBy('title')}
+        >title</button>
+        <button 
+          data-testid='search-by-author-button' 
+          className={searchBy === 'author' ? "selectedSearchMethod" : "otherSearchMethod"}
+          onClick={() => setSearchBy('author')}
+        >author</button>
+      </div>
       {searchResult && searchResult.map(book => {
         return (
-          <div key={book.id}>
-            {book.imageUrl ? <img src={book.imageUrl} alt={`${book.title} book cover`}/> : <div></div>}
-            <div>
+          <div key={book.id} className='booksearch-grand-wrapper__book-result-container'>
+            {book.imageUrl ? <img src={book.imageUrl} alt={`${book.title} book cover`}/> : <div className='booksearch-grand-wrapper__book-result-container__stand-in-cover'><h3>{book.title}</h3></div>}
+            <div className='booksearch-grand-wrapper__book-result-container__content-and-btn'>
               <h3>{book.title}</h3>
               {book.authors ? <p>{`by ${book.authors}`}</p>: <div></div>}
-              {book.genre ? <h4>{book.genre}</h4> : <div></div>}
+              {book.genre ? <h4>{book.genre}</h4> : null}
               <button onClick={() => setAddBookClicked(true)}>add to bookcase</button>
             </div>
           </div>

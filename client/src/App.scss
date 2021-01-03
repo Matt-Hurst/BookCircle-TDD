@@ -16,11 +16,51 @@ $L: 2rem;
 $XL: 2.4rem;
 $XXL: 2.8rem;
 
+$page-margin: 0 $M;
+
 @mixin button {
   background-color: $primary-dark;
   color: $background-color;
   border-radius: 10px;
   border:none;
+}
+
+@mixin pageTitle {
+  color: $primary-dark;
+  font-weight: 300;
+  border-bottom: 5px solid $primary-dark;
+  margin: $XS 0;
+}
+
+@mixin pop-out-box {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  border: 5px solid $primary-dark;
+  border-radius: $standard-border-radius;
+  background-color: $background-color;
+  align-items: center;
+  z-index: 2;
+}
+
+@mixin greyedBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(182, 182, 182, 0.8);
+  z-index: 1;
+}
+
+@mixin close-modal-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
 }
 
 $standard-border-radius: 10px;
