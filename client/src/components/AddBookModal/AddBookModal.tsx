@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai';
+
+import './AddBookModal.scss'
 
 interface AddBookModalProps {
   closeModalFunc: Function;
@@ -39,14 +41,22 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
   // }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>): void => {
-    if(e.target.name === 'availableToBorrow') setUserInput({...userInput, availableToBorrow: !userInput.availableToBorrow })
-    if(e.target.name === 'starRead') setUserInput({...userInput, starRead: !userInput.availableToBorrow })
-    setUserInput(prevState => {
-      return {
-        ...prevState,
-        [e.target.name]: e.target.value
-      }
-    })
+    if(e.target.name === 'availableToBorrow') {
+      setUserInput(prev => {
+            return {
+              ...prev,
+              availableToLend: !prev.availableToBorrow
+            }
+        })
+    } else if(e.target.name === 'starRead') setUserInput({...userInput, starRead: !userInput.starRead })
+    else {
+      setUserInput(prevState => {
+        return {
+          ...prevState,
+          [e.target.name]: e.target.value
+        }
+      })
+    }
   }
 
   let content; 
@@ -54,7 +64,7 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
   if(modalContent === 1) {
     content = 
       ( <div>
-        <p>When did you read this book?</p>
+        <h2>When did you read this book?</h2>
         <input 
           data-testid='date-input'
           name='date' 
@@ -66,7 +76,7 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
   } else if(modalContent === 2) {
     content = 
       <div>
-        <p>What did you think?</p>
+        <h2>What did you think?</h2>
         <textarea 
           name='review'
           data-testid='review-textarea'
@@ -78,16 +88,21 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
   } else if(modalContent === 3) {
     content = 
       <div>
-        <p>Can you lend this book?</p>
-        <div className="checkboxDiv">
-          <input type="checkbox" value='yes' name='availableToBorrow' onChange={(e) => handleChange(e)} checked={userInput.availableToBorrow ? true: false}/>
+        <h2>Can you lend this book?</h2>
+        <div className='addbook-modal-grand-wrapper__pop-out-container__checkbox-div'>
+          <input 
+            type="checkbox"
+            checked={userInput.availableToBorrow}
+            name='availableToBorrow' 
+            onChange={(e) => handleChange(e)} 
+          />
           <label htmlFor="yes">I'm happy to lend this book</label>
         </div>
       </div>
   } else if(modalContent === 4) {
     content = 
       <div>
-        <p>What genre is this book?</p>
+        <h2>What genre is this book?</h2>
         <select name='genre' onChange={(e) => handleChange(e)}>
           <option value="fiction">Fiction</option>
           <option value="non-fiction">Non-Fiction</option>
@@ -107,30 +122,38 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
   } else if(modalContent === 5) {
     content = 
       <div>
-        <p>Is this book a must read?</p>
-          <div>
+        <h2>Is this book a must read?</h2>
+          <div className='addbook-modal-grand-wrapper__pop-out-container__checkbox-div'>
             <input type="checkbox" value='yes' name='starRead' onChange={(e) => handleChange(e)} checked={userInput.starRead ? true: false}/>
             <label htmlFor="yes">star read</label>
           </div>
       </div>
   }
 
+  console.log(userInput)
+
   return (
-    <div data-testid='add-book-modal'>
+    <div data-testid='add-book-modal' className='addbook-modal-grand-wrapper'>
+      <div 
+        className='addbook-modal-grand-wrapper__greyed-background-div'
+        onClick={() => closeModalFunc()}
+      ></div>
       <AiFillCloseCircle  data-testid="close-modal-icon" onClick={() => closeModalFunc()}/>
-      {content}
-      <div>
-        {modalContent !== 1 && <button onClick={() => {setModalContent(modalContent - 1)}}>back</button>}
-        {modalContent !== 5 ?  <button onClick={() => {
-          // if(modalContent === 2 && !userInput.review)  return
-          setModalContent(modalContent + 1)
-        }
-        }
-        >next</button> : <button onClick={() => {
-          addBookFunction(userInput)
-          closeModalFunc()
-        }
-        }>add book</button>}
+      <div className='addbook-modal-grand-wrapper__pop-out-container'>
+        {content}
+        <div className='addbook-modal-grand-wrapper__pop-out-container__button-div'>
+          {modalContent !== 1 && <button onClick={() => {setModalContent(modalContent - 1)}}>back</button>}
+          {modalContent !== 5 ?  <button onClick={() => {
+            // if(modalContent === 2 && !userInput.review)  return
+            setModalContent(modalContent + 1)
+          }
+          }
+          >next</button> : <button onClick={() => {
+            addBookFunction(userInput)
+            closeModalFunc()
+          }
+          }>add book</button>}
+        </div>
       </div>
     </div>
   )

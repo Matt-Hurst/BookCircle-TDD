@@ -7,30 +7,16 @@
   justify-content: center;
 
   &__greyed-background-div {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(182, 182, 182, 0.8);
-    z-index: 1;
+    @include greyedBackground;
   }
 
   &__pop-out-container {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    border: 5px solid $primary-dark;
-    border-radius: $standard-border-radius;
-    background-color: $background-color;
+    @include pop-out-box;
     // max-height: 40vh;
     min-height: 40vh;
     min-width: 90vw;
     max-width: 90vw;
-    align-items: center;
-    z-index: 2;
+    
 
     &__display {
 
