@@ -6,6 +6,10 @@
   align-items: center;
   justify-content: center;
 
+  &__close-btn {
+    @include close-modal-button;
+  }
+
   &__greyed-background-div {
     @include greyedBackground;
   }
@@ -52,6 +56,9 @@
         margin: $M 0;
         @include button;
         padding: 0.5rem 1rem;
+      }
+      #add-book-btn {
+        background-color: green;
       }
     }
 

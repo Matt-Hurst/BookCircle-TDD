@@ -55,6 +55,14 @@ $page-margin: 0 $M;
   z-index: 1;
 }
 
+@mixin close-modal-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+}
+
 $standard-border-radius: 10px;
 
 * {
