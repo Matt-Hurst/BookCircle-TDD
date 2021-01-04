@@ -14,7 +14,7 @@ const LoginForm: React.FC<LoginFormProps> = ({loginFunc}) => {
   const handleSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     await loginFunc(formValues.name, formValues.password)
-    await setFormValues({name: '', password: ''})
+    setFormValues({name: '', password: ''})
     history.go(0)
   }
 

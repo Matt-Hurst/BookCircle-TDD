@@ -1,29 +1,37 @@
 import React from 'react'
 import { render, screen, fireEvent, act } from '@testing-library/react'
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
+import configureStore from 'redux-mock-store';
 import BookSearch from './BookSearch'
 import { getQueryResults } from './getQueryResults'
 import { mockBooks } from '../../mocks'
 
+const mockStore = configureStore([thunk])
 jest.mock('./getQueryResults')
 
 describe('BookSearch page', () => {
+  let store: any;
 
   beforeEach(() => {
     (getQueryResults as jest.Mock)
       .mockImplementationOnce(() => [mockBooks[0]])
       .mockImplementationOnce(() => [mockBooks[1]])
       .mockImplementationOnce(() => mockBooks)
+    store = mockStore({
+      books: mockBooks,
+    })
   })
   afterEach(() => {
     jest.resetAllMocks()
   })
 
   it('Should render', () => {
-    render(<BookSearch />)
+    render(<Provider store={store}><BookSearch /></Provider>)
     expect(screen.getByTestId('book-search-page')).toBeInTheDocument()
   })
   it('Should change searchBy component state from "title" to "author" when "author button clicked", and vice versa', () => {
-    render(<BookSearch />)
+    render(<Provider store={store}><BookSearch /></Provider>)
     const authorBtn = screen.getByTestId('search-by-author-button')
     const titelBtn = screen.getByTestId('search-by-title-button')
     expect(screen.getByPlaceholderText('title')).toBeInTheDocument()
@@ -33,7 +41,7 @@ describe('BookSearch page', () => {
     expect(screen.getByPlaceholderText('title')).toBeInTheDocument()
   })
   it('Should render results of successful search', async () => {
-    render(<BookSearch />)
+    render(<Provider store={store}><BookSearch /></Provider>)
     const searchBar = screen.getByTestId('search-input')
     const searchButton = screen.getByTestId('search-button')
     expect(screen.queryByText("Death's End")).toBeNull()
@@ -48,7 +56,7 @@ describe('BookSearch page', () => {
     expect(await screen.findByText("Death's End")).toBeInTheDocument()
   })
   it('Should update results after successful search', async () => {
-    render(<BookSearch />)
+    render(<Provider store={store}><BookSearch /></Provider>)
     const searchBar = screen.getByTestId('search-input')
     const searchButton = screen.getByTestId('search-button')
     expect(screen.queryByText("Death's End")).toBeNull()
@@ -73,7 +81,7 @@ describe('BookSearch page', () => {
     expect(screen.queryByText("Death's End")).toBeNull()
   })
   it('Should render all book results', async () => { 
-    render(<BookSearch />)
+    render(<Provider store={store}><BookSearch /></Provider>)
     const searchBar = screen.getByTestId('search-input')
     const searchButton = screen.getByTestId('search-button')
     act(() => {
@@ -89,7 +97,7 @@ describe('BookSearch page', () => {
     expect(booksRendered.length).toBe(mockBooks.length)
   })
   it('Should clear search input box when search is executed', async () => {
-    render(<BookSearch />)
+    render(<Provider store={store}><BookSearch /></Provider>)
     const searchBar = screen.getByTestId('search-input')
     const searchButton = screen.getByTestId('search-button')
     expect(screen.queryByDisplayValue("Death")).not.toBeInTheDocument()
@@ -104,7 +112,7 @@ describe('BookSearch page', () => {
     expect(await screen.findByDisplayValue("")).toBeInTheDocument()
   })
   it('Should render AddBook modal when a search result "add book" button is clicked', async () => {
-    render(<BookSearch />)
+    render(<Provider store={store}><BookSearch /></Provider>)
     const searchBar = screen.getByTestId('search-input')
     const searchButton = screen.getByTestId('search-button')
     act(() => {

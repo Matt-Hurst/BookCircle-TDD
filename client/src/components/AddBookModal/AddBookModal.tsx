@@ -132,8 +132,8 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
           >next</button> : 
           <button 
             id='add-book-btn' 
-            onClick={async () => {
-              await handleAddBook()
+            onClick={ () => {
+              handleAddBook()
               closeModalFunc()  
             }
             }>add book</button>}
