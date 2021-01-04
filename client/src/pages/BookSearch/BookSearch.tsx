@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import { Book } from '../../interfaces'
 import { getQueryResults } from './getQueryResults'
 import { AddBookModal } from '../../components/AddBookModal'
@@ -6,7 +7,12 @@ import { addBook } from '../../actions/bookActions'
 
 import './BookSearch.scss'
 
-const BookSearch = () => {
+interface BookSearchProps {
+  books: Book[];
+  addBook: Function;
+}
+
+const BookSearch: React.FC<BookSearchProps> = ({books, addBook}) => {
   const [searchResult, setSearchResult] = useState<Book[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [searchBy, setSearchBy] = useState('title')
@@ -50,9 +56,10 @@ const BookSearch = () => {
           onClick={() => setSearchBy('author')}
         >author</button>
       </div>
-      {searchResult && searchResult.map(book => {
+      <div>
+      {searchResult && searchResult.map((book, i) => {
         return (
-          <div key={book.id} className='booksearch-grand-wrapper__book-result-container'>
+          <div key={i} className='booksearch-grand-wrapper__book-result-container'>
             {book.imageUrl ? <img src={book.imageUrl} alt={`${book.title} book cover`}/> : <div className='booksearch-grand-wrapper__book-result-container__stand-in-cover'><h3>{book.title}</h3></div>}
             <div className='booksearch-grand-wrapper__book-result-container__content-and-btn'>
               <h3>{book.title}</h3>
@@ -63,6 +70,7 @@ const BookSearch = () => {
           </div>
         )
       })}
+      </div>
       {addBookClicked && (
         <AddBookModal closeModalFunc={() => setAddBookClicked(false)} addBookFunction={addBook}/>
       )}
@@ -70,4 +78,10 @@ const BookSearch = () => {
   )
 }
 
-export default BookSearch
+const mapStateToProps = ({books}: {books: Book[]}) => {
+  return {
+    books
+  }
+}
+
+export default connect(mapStateToProps, {addBook})(BookSearch)
