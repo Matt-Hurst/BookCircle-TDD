@@ -20,7 +20,7 @@ export const mockBooks =
     dateRead: `${currentYear}-08-09`,
     review: 'Interesting series',
     availableToBorrow: true,
-    genre: 'science fiction',
+    genre: 'fiction',
     star: false,
     id: 'ffd9e79a-176c-4b28-a4db-91976886f748',
   },

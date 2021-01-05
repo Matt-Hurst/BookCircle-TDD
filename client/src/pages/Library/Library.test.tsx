@@ -39,9 +39,9 @@ describe('Library page', () => {
     expect(screen.getAllByTestId('container-book').length).toBe(mockBooks.filter(book => book.genre === 'science fiction').length)
   })
 
-  it('Should render userBookModal when book is clicked and friendBooks state is null', () => {
+  it('Should render userBookModal when book is clicked and friendBooks state is null', async () => {
     render(<Provider store={store}><Library /></Provider>)
-    fireEvent.click(screen.getByTestId('container-book'))
-    expect(screen.getByTestId('user-book-modal')).toBeInTheDocument()
+    fireEvent.click(screen.getAllByRole('img')[0])
+    expect(await screen.findByTestId('user-book-modal')).toBeInTheDocument()
   })
 })

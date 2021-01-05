@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { BookShelf } from '../../components/BookShelf'
+import { UserBookModal } from '../../components/UserBookModal'
 import { Book } from '../../interfaces'
 
 import './Library.scss'
@@ -11,6 +12,8 @@ interface LibraryProps {
 
 const Library: React.FC<LibraryProps> = ({books}) => {
   const [bookList, setBookList] = useState<Book[]>(books)
+  const [clickedBook, setClickedBook] = useState<Book>()
+
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.value) {
@@ -27,6 +30,7 @@ const Library: React.FC<LibraryProps> = ({books}) => {
         setBookList(books.filter(book => book.genre ===e.target.value))
     }
   }
+
 
   return (
     <div>
@@ -49,7 +53,11 @@ const Library: React.FC<LibraryProps> = ({books}) => {
         <option value="arts & culture">Arts & Culture</option>
         <option value="self-improvement">Self-Improvement</option>
       </select>
-      <BookShelf books={bookList} handleClick={() => console.log('book clicked')}/>
+      <BookShelf books={bookList} handleClick={async (book: Book) => {
+        await setClickedBook(book)
+        }
+        }/>
+      {clickedBook && <UserBookModal book={clickedBook} closeModal={() => setClickedBook(undefined)} editBook={() => console.log('NEED TO CREATE EDIT BOOK COMPONENT')}/>}
     </div>
   )
 }

@@ -2,6 +2,7 @@
 REDUX STORE:
   {
     friends: id[]
+    friendBooks: Book[]
     availableBooks: Book[]
     messages: Message[]
     books: Book[]
