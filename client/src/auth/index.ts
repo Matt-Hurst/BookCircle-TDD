@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { URL } from '../helpers'
 
 export const retrieveTokenFromLocalStorage = (): string => {
   return localStorage.getItem('token') || ''

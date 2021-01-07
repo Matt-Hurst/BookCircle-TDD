@@ -12,12 +12,15 @@ interface BookProps {
 const BookDisplay: React.FC<BookProps> = ({book, handleClick}) => {
 
   return (
-    <div data-testid="container-book" className='book-grand-wrapper'>
-      <img src={book.imageUrl} alt="1984" 
-        onClick={() => {
-          handleClick(book)
-        }}
-      />
+    <div data-testid="container-book" className='book-grand-wrapper' 
+      onClick={() => {
+        handleClick(book)
+      }}
+      >
+      { book.imageUrl ? <img src={book.imageUrl} alt={`${book.title} book cover`} />
+      : 
+      <div className='book-grand-wrapper__stand-in-book-cover'><h3>{book.title}</h3></div>
+      }
       {book.star && <AiFillStar className="book-grand-wrapper__star" />}
     </div>
   )

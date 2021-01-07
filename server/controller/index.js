@@ -298,14 +298,20 @@ exports.getAvailableBooksCtrl = async (req, res) => {
 
 exports.editBookCtrl = async (req, res) => {
   try {
-    const { userId, bookId, newBook } = req.body
+    const { bookId, newBook } = req.body
+    const updatedBook = {...newBook, id: uuidv4()}
+    console.log(updatedBook) 
+    const userId = req.user._id
+
+    console.log(bookId, newBook)
+
     await User.findByIdAndUpdate(userId, {
       $pull: { books: { id: bookId } }
     });
     const result = await User.findByIdAndUpdate(userId, {
-      $push: { books: newBook }
+      $push: { books: updatedBook }
     }, { new: true })
-    res.send(result)
+    res.send(result.books)
   } catch (error) {
     console.error('ERROR', error)
   }

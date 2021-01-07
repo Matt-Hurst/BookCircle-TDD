@@ -19,6 +19,7 @@ const LoginForm: React.FC<LoginFormProps> = ({loginFunc}) => {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value)
     setFormValues({
       ...formValues,
       [e.target.name]: e.target.value

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
+import { editBook } from '../../actions/'
 import { BookShelf } from '../../components/BookShelf'
 import { UserBookModal } from '../../components/UserBookModal'
 import { Book } from '../../interfaces'
@@ -8,12 +9,17 @@ import './Library.scss'
 
 interface LibraryProps {
   books: Book[];
+  editBook: Function;
 }
 
-const Library: React.FC<LibraryProps> = ({books}) => {
+const Library: React.FC<LibraryProps> = ({books, editBook}) => {
   const [bookList, setBookList] = useState<Book[]>(books)
-  const [clickedBook, setClickedBook] = useState<Book>()
+  const [clickedBook, setClickedBook] = useState<Book | null>(null)
 
+  useEffect(() => {
+    setBookList(books)
+    setClickedBook(null)
+  }, [books])
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.value) {
@@ -57,7 +63,7 @@ const Library: React.FC<LibraryProps> = ({books}) => {
         await setClickedBook(book)
         }
         }/>
-      {clickedBook && <UserBookModal book={clickedBook} closeModal={() => setClickedBook(undefined)} editBook={() => console.log('NEED TO CREATE EDIT BOOK COMPONENT')}/>}
+      {clickedBook && <UserBookModal book={clickedBook} closeModal={() => setClickedBook(null)} editBook={editBook}/>}
     </div>
   )
 }
@@ -66,4 +72,4 @@ const mapStateToProps = ({books}: {books: Book[]}) => {
   return { books }
 }
 
-export default connect(mapStateToProps)(Library)
+export default connect(mapStateToProps, { editBook })(Library)

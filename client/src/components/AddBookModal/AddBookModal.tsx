@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai';
+import { Book } from '../../interfaces';
 
 import './AddBookModal.scss'
 
 interface AddBookModalProps {
   closeModalFunc: Function;
   addBookFunction: Function;
+  book: Book | null;
 }
 
-const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunction}) => {
+const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunction, book}) => {
   const [dateRead, setDateRead] = useState<string>('')
   const [review, setReview] = useState<string | undefined>(undefined)
   const [availableToBorrow, setAvailableToBorrow] = useState<boolean>(false)
@@ -39,7 +41,7 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
   const handleForward = (step: string) => setModalStep(forwardStepLookup[step])
 
   const handleAddBook = async () => {
-    await addBookFunction({ dateRead, review, availableToBorrow, genre, starRead })
+    await addBookFunction({...book, dateRead, review, availableToBorrow, genre, starRead })
     setDateRead('')
     setReview(undefined)
     setAvailableToBorrow(false)
@@ -132,8 +134,8 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
           >next</button> : 
           <button 
             id='add-book-btn' 
-            onClick={ () => {
-              handleAddBook()
+            onClick={ async () => {
+              await handleAddBook()
               closeModalFunc()  
             }
             }>add book</button>}

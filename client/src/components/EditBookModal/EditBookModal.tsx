@@ -15,20 +15,20 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
   const [review, setReview] = useState<string | undefined>(undefined)
   const [availableToBorrow, setAvailableToBorrow] = useState<boolean>(false)
   const [genre, setGenre] = useState<string>('fiction')
-  const [starRead, setStarRead] = useState<boolean>(false)
+  const [star, setStar] = useState<boolean>(false)
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => setDateRead(e.target.value)
   const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setReview(e.target.value)
   const handleAvailableToBorrowChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => setAvailableToBorrow(!availableToBorrow)
   const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => setGenre(e.target.value)
-  const handleStarBookChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => setStarRead(!starRead)
+  const handleStarBookChange = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => setStar(!star)
 
   useEffect(() => {
     setDateRead(book.dateRead)
     setReview(book.review)
     setAvailableToBorrow(book.availableToBorrow)
     setGenre(book.genre)
-    setStarRead(book.star)
+    setStar(book.star)
   }, [])
  
 
@@ -64,12 +64,12 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
           <button 
             data-testid='star-yes-button'
             onClick={(e) => handleStarBookChange(e)}
-            id={starRead ? 'selected' : 'notSelected'}
+            id={star ? 'selected' : 'notSelected'}
           >yes</button>
           <button 
             data-testid='star-no-button'
             onClick={(e) => handleStarBookChange(e)}
-            id={starRead ? 'notSelected' : 'selected'}
+            id={star ? 'notSelected' : 'selected'}
           >no</button>
         </div>
       </div>
@@ -100,7 +100,8 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
         <button 
           className='edit-book-modal-grand-wrapper__save-cancel-buttons-container__save-button'
           onClick={async () => {
-          await editBook({dateRead, review, availableToBorrow, genre, starRead})
+          console.log('click')
+          await editBook(book.id,{...book, dateRead, review, availableToBorrow, genre, star})
           closeEdit()
         }}>save</button>
         <button 

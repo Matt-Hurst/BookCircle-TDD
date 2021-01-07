@@ -90,4 +90,26 @@ describe('Book Action Creators', () => {
     const actionsCalled = store.getActions();
     expect(actionsCalled[0]).toEqual(expectedAction)
   })
+
+  it('editBook should make axios call and then disatch type: "SET_USER_BOOKS" with payload', async () => {
+    newAvailableBooks = mockBooks;
+    store = mockStore({
+      availableBooks: mockBooks,
+    })
+    const expectedAction = {
+      type: SET_USER_BOOKS,
+      payload: newAvailableBooks
+    }
+    
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: newAvailableBooks
+      })
+    })
+    await store.dispatch(addBook(mockBooks[0]))
+    const actionsCalled = store.getActions();
+    expect(actionsCalled[0]).toEqual(expectedAction)
+  })
 })

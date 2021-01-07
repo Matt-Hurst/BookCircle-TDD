@@ -35,7 +35,10 @@ const UserBookModal: React.FC<UserBookModalProps> = ({book, closeModal, editBook
             />
             <div className='user-book-modal-grand-wrapper__pop-out-container__top-content-div'>
               <div className='user-book-modal-grand-wrapper__pop-out-container__top-content-div__image-container'>
+                { book.imageUrl ? 
                 <img src={book.imageUrl} alt={book.title}/> 
+                : 
+                <div className='user-book-modal-grand-wrapper__pop-out-container__top-content-div__image-container__stand-in-cover'><h3>{book.title}</h3></div> }
                 {book.star && <AiFillStar 
                   className='user-book-modal-grand-wrapper__pop-out-container__top-content-div__image-container__star'/>}
               </div>

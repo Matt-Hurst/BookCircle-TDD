@@ -1,7 +1,7 @@
 const { getUserData } = require('./userActions')
 const { setUserTarget, getTarget } = require('./targetActions')
 const { removeMessage, acceptFriendRequest, rejectFriendRequest, acceptBookRequest, rejectBookRequest } = require('./messageActions')
-const { requestBook, getAvailableBooks } = require('./bookActions')
+const { requestBook, getAvailableBooks, editBook, addBook } = require('./bookActions')
 
 export {
   getUserData,
@@ -13,5 +13,7 @@ export {
   acceptBookRequest,
   rejectBookRequest,
   requestBook,
-  getAvailableBooks
+  getAvailableBooks,
+  editBook, 
+  addBook
 }

@@ -8,15 +8,14 @@ import { addBook } from '../../actions/bookActions'
 import './BookSearch.scss'
 
 interface BookSearchProps {
-  books: Book[];
   addBook: Function;
 }
 
-const BookSearch: React.FC<BookSearchProps> = ({books, addBook}) => {
+const BookSearch: React.FC<BookSearchProps> = ({addBook}) => {
   const [searchResult, setSearchResult] = useState<Book[]>([])
   const [searchQuery, setSearchQuery] = useState('')
   const [searchBy, setSearchBy] = useState('title')
-  const [addBookClicked, setAddBookClicked] = useState<boolean>(false)
+  const [addBookClicked, setAddBookClicked] = useState<Book | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value)
@@ -65,14 +64,14 @@ const BookSearch: React.FC<BookSearchProps> = ({books, addBook}) => {
               <h3>{book.title}</h3>
               {book.authors ? <p>{`by ${book.authors}`}</p>: <div></div>}
               {book.genre ? <h4>{book.genre}</h4> : null}
-              <button onClick={() => setAddBookClicked(true)}>add to bookcase</button>
+              <button onClick={() => setAddBookClicked(book)}>add to bookcase</button>
             </div>
           </div>
         )
       })}
       </div>
       {addBookClicked && (
-        <AddBookModal closeModalFunc={() => setAddBookClicked(false)} addBookFunction={addBook}/>
+        <AddBookModal closeModalFunc={() => setAddBookClicked(null)} addBookFunction={addBook} book={addBookClicked}/>
       )}
     </div>
   )

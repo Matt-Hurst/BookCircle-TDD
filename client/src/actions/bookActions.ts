@@ -61,3 +61,24 @@ export const requestBook = (friendId: string, bookId: string) => async (dispatch
     console.error(error)
   }
 }
+
+export const editBook = (bookId: string, newBook: Book) => async (dispatch: Function) => {
+  try {
+    const { data } = await axios({
+      method: 'put',
+      url: `${URL}editBook`,
+      data: {
+        bookId, 
+        newBook
+      },
+      headers: {'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}`}
+    })
+    console.log(data)
+    dispatch({
+      type: SET_USER_BOOKS,
+      payload: data
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
