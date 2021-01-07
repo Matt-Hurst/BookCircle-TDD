@@ -300,16 +300,17 @@ exports.editBookCtrl = async (req, res) => {
   try {
     const { bookId, newBook } = req.body
     const updatedBook = {...newBook, id: uuidv4()}
-    console.log(updatedBook) 
     const userId = req.user._id
-
-    console.log(bookId, newBook)
-
     await User.findByIdAndUpdate(userId, {
       $pull: { books: { id: bookId } }
     });
     const result = await User.findByIdAndUpdate(userId, {
-      $push: { books: updatedBook }
+      $push: { 
+        books: {
+          $each: [updatedBook],
+          $position: 0 
+        }
+      }
     }, { new: true })
     res.send(result.books)
   } catch (error) {
