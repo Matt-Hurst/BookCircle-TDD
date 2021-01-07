@@ -1,2 +1,19 @@
 @import '../../App.scss';
 
+.library-grand-wrapper {
+
+  margin: $page-margin;
+
+  h1 {
+    @include pageTitle;
+  }
+
+  &__select-element {
+    color: $primary-dark;
+    font-size: $S;
+    background-color: $background-color;
+    border: none;
+    cursor: pointer;
+    margin: $XS $L;
+  }
+}

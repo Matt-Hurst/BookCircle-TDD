@@ -15,7 +15,7 @@ const Header = () => {
         <img className='__logo' src={Logo} alt="Book Circle logo"/>
       </Link>
       <div className="__icons-wrapper">
-        <Link to='/yourLibrary'>
+        <Link to='/your-library'>
           <ImBooks className="icon"/>
         </Link>
         <Link to='/friends'>

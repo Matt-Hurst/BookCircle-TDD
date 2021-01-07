@@ -8,6 +8,7 @@ import {
 import { Header } from './components/AuthHeader'
 import { BookSearch } from './pages/BookSearch';
 import { Dashboard } from './pages/Dashboard';
+import { Library } from './pages/Library';
 
 
 function AuthenticatedApp() {
@@ -17,6 +18,9 @@ function AuthenticatedApp() {
       <Switch>
         <Route path="/" exact>
           <Dashboard />
+        </Route>
+        <Route path="/your-library">
+          <Library />          
         </Route>
         <Route path="/search" exact>
           <BookSearch />

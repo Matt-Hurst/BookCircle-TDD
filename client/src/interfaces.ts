@@ -7,6 +7,7 @@ REDUX STORE:
     messages: Message[]
     books: Book[]
     target: number
+    selectedBook: Book
   }
 */
 

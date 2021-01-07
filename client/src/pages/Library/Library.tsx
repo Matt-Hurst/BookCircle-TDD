@@ -33,9 +33,9 @@ const Library: React.FC<LibraryProps> = ({books}) => {
 
 
   return (
-    <div>
+    <div className='library-grand-wrapper'>
       <h1>Your Library:</h1>
-      <select name="genre" id="genre" onChange={handleChange}>
+      <select name="genre" className='library-grand-wrapper__select-element' onChange={handleChange}>
         <option value="all">All Books</option>
         <option value="starReads">Star Reads</option>
         <option value="availableToBorrow">Available to Borrow</option>

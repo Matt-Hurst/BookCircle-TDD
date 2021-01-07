@@ -9,14 +9,14 @@ interface AddBookModalProps {
 }
 
 const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunction}) => {
-  const [date, setDate] = useState<string>('')
+  const [dateRead, setDateRead] = useState<string>('')
   const [review, setReview] = useState<string | undefined>(undefined)
   const [availableToBorrow, setAvailableToBorrow] = useState<boolean>(false)
   const [genre, setGenre] = useState<string>('fiction')
   const [starRead, setStarRead] = useState<boolean>(false)
   const [modalStep, setModalStep] = useState('whenDidYouRead')
 
-  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => setDate(e.target.value)
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => setDateRead(e.target.value)
   const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => setReview(e.target.value)
   const handleAvailableToBorrowChange = (e: React.ChangeEvent<HTMLInputElement>) => setAvailableToBorrow(!availableToBorrow)
   const handleGenreChange = (e: React.ChangeEvent<HTMLSelectElement>) => setGenre(e.target.value)
@@ -39,8 +39,8 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
   const handleForward = (step: string) => setModalStep(forwardStepLookup[step])
 
   const handleAddBook = async () => {
-    await addBookFunction({ date, review, availableToBorrow, genre, starRead })
-    setDate('')
+    await addBookFunction({ dateRead, review, availableToBorrow, genre, starRead })
+    setDateRead('')
     setReview(undefined)
     setAvailableToBorrow(false)
     setGenre('fiction')
@@ -66,7 +66,7 @@ const AddBookModal: React.FC<AddBookModalProps> = ({closeModalFunc, addBookFunct
             <input 
               data-testid='date-input'
               type="date" 
-              value={date} 
+              value={dateRead} 
               onChange={(e) => handleDateChange(e)}
             />
           </div>
