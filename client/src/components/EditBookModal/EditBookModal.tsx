@@ -25,29 +25,22 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
 
   useEffect(() => {
     setDateRead(book.dateRead)
-  }, [])
-  useEffect(() => {
     setReview(book.review)
-  }, [])
-  useEffect(() => {
     setAvailableToBorrow(book.availableToBorrow)
-  }, [])
-  useEffect(() => {
     setGenre(book.genre)
-  }, [])
-  useEffect(() => {
     setStarRead(book.star)
   }, [])
+ 
 
 
   return (
-    <div>
+    <div className='edit-book-modal-grand-wrapper'>
       <h1>Update Book:</h1>
-      <div>
+      <div className='edit-book-modal-grand-wrapper__edit-div'>
         <h2>Review</h2>
         <textarea name="review" maxLength={100} value={review} onChange={(e) => handleReviewChange(e)}></textarea>
       </div>
-      <div>
+      <div className='edit-book-modal-grand-wrapper__edit-div'>
         <h2>Genre</h2>
         <select value={genre} onChange={(e) => handleGenreChange(e)}>
           <option value="fiction">Fiction</option>
@@ -65,37 +58,37 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
           <option value="self-improvement">Self-Improvement</option>
         </select>
       </div>
-      <div>
+      <div className='edit-book-modal-grand-wrapper__edit-div'>
         <h2>Star read</h2>
-        <div>
+        <div className='edit-book-modal-grand-wrapper__edit-div__button-container'>
           <button 
             data-testid='star-yes-button'
             onClick={(e) => handleStarBookChange(e)}
-            className={starRead ? 'selected' : 'notSelected'}
+            id={starRead ? 'selected' : 'notSelected'}
           >yes</button>
           <button 
             data-testid='star-no-button'
             onClick={(e) => handleStarBookChange(e)}
-            className={starRead ? 'notSelected' : 'selected'}
+            id={starRead ? 'notSelected' : 'selected'}
           >no</button>
         </div>
       </div>
-      <div>
+      <div className='edit-book-modal-grand-wrapper__edit-div'>
         <h2>Can lend</h2>
-        <div>
+        <div className='edit-book-modal-grand-wrapper__edit-div__button-container'>
           <button 
             data-testid='lend-yes-button'
             onClick={(e) => handleAvailableToBorrowChange(e)} 
-            className={availableToBorrow ? 'selected' : 'notSelected'}
+            id={availableToBorrow ? 'selected' : 'notSelected'}
           >yes</button>
           <button 
             data-testid='lend-no-button' 
             onClick={(e) => handleAvailableToBorrowChange(e)} 
-            className={availableToBorrow ? 'notSelected' : 'selected'}
+            id={availableToBorrow ? 'notSelected' : 'selected'}
           >no</button>
         </div>
       </div>
-      <div>
+      <div className='edit-book-modal-grand-wrapper__edit-div'>
         <h2>Date read</h2>
         <input 
           type="date" 
@@ -103,12 +96,16 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
           onChange={(e) => handleDateChange(e)}
         />
       </div>
-      <div>
-        <button onClick={async () => {
+      <div className='edit-book-modal-grand-wrapper__save-cancel-buttons-container'>
+        <button 
+          className='edit-book-modal-grand-wrapper__save-cancel-buttons-container__save-button'
+          onClick={async () => {
           await editBook({dateRead, review, availableToBorrow, genre, starRead})
           closeEdit()
         }}>save</button>
-        <button onClick={() => closeEdit()}>cancel</button>
+        <button 
+          className='edit-book-modal-grand-wrapper__save-cancel-buttons-container__cancel-button'
+          onClick={() => closeEdit()}>cancel</button>
       </div>
     </div>
   )

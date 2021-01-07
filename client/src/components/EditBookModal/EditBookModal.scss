@@ -1,1 +1,72 @@
 @import '../../App.scss';
+
+#selected {
+  background-color: $primary-red;
+  color: $background-color;
+}
+
+#notSelected {
+  background-color: $primary-dark;
+  color: $background-color;
+}
+
+.edit-book-modal-grand-wrapper {
+  @include pop-out-box;
+  padding: $S;
+  flex-direction: column;
+  min-height: 40vh;
+  min-width: 90vw;
+  max-width: 90vw;
+
+  &__edit-div {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    margin: $XXS;
+
+    &__button-container,
+    textarea,
+    select,
+    input {
+      margin-right: $XS;
+    }
+
+    h2 {
+      margin-left: $XS;
+    }
+
+    textarea {
+      height: 80px;
+      width: 50vw;
+    }
+    &__button-container {
+      button {
+        @include button;
+        padding: $XXS $S;
+        margin: 0 $XS;
+      }
+    }
+  }
+
+  &__save-cancel-buttons-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top:$L;
+
+    &__save-button,
+    &__cancel-button {
+      @include button;
+      padding: $XXS $S;
+      font-size: $S;
+    }
+
+    &__save-button {
+      background-color: green;
+    }
+    &__cancel-button {
+      background-color: red;
+    }
+  }
+}

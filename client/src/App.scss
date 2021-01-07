@@ -45,6 +45,16 @@ $page-margin: 0 $M;
   z-index: 2;
 }
 
+@mixin star {
+  color: gold;
+  height: 2rem;
+  width: 2rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 10px;
+  left: 2px;
+}
+
 @mixin greyedBackground {
   position: fixed;
   top: 0;

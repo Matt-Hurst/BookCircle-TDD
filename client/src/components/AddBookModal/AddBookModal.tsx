@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { AiFillCloseCircle } from 'react-icons/ai';
 
 import './AddBookModal.scss'

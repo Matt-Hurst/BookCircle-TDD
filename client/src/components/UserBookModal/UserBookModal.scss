@@ -1,1 +1,69 @@
 @import '../../App.scss';
+
+.user-book-modal-grand-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__greyed-background-div {
+    @include greyedBackground;
+  }
+
+  &__pop-out-container {
+    @include pop-out-box;
+    padding: $S;
+    flex-direction: column;
+    min-height: 40vh;
+    min-width: 90vw;
+    max-width: 90vw;
+
+    &__close-btn {
+      @include close-modal-button;
+    }
+
+    &__review {
+      font-size: $S;
+      font-style: italic;
+      margin: $XS 0;
+      span {
+        font-style: normal;
+        font-weight: bold;
+        letter-spacing: 0.1rem;
+      }
+    }
+
+    &__edit-button {
+      @include button;
+      font-size: $S;
+      padding: 0.5rem;
+      margin: $XXS 0;
+    }
+
+    &__top-content-div {
+      display: flex;
+      align-items: center;
+
+      &__image-container {
+        position: relative;
+        &__star {
+          @include star;
+        }
+      }
+      &__text-container {
+        margin-left: $S;
+        h3 {
+          font-weight: 300;
+          font-size: $M;
+          margin-top: $XXS;
+        }
+  
+        h4 {
+          font-size: $S;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+  
+}
