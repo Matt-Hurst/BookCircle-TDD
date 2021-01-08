@@ -49,7 +49,7 @@ const UserBookModal: React.FC<UserBookModalProps> = ({book, closeModal, editBook
                 {book.availableToBorrow && <h4>available to borrow</h4>}
               </div>
             </div>
-            <p className='user-book-modal-grand-wrapper__pop-out-container__review'><span>Review:</span> {book.review ? book.review : 'no review'}</p>
+            <p className='user-book-modal-grand-wrapper__pop-out-container__review'><span>Review:</span>{book.review ? book.review : 'no review'}</p>
             <button 
               className='user-book-modal-grand-wrapper__pop-out-container__edit-button'
               onClick={() => handleClick()}>edit book</button>

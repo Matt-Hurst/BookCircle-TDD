@@ -1,15 +1,5 @@
 @import '../../App.scss';
 
-#selected {
-  background-color: $primary-red;
-  color: $background-color;
-}
-
-#notSelected {
-  background-color: $primary-dark;
-  color: $background-color;
-}
-
 .edit-book-modal-grand-wrapper {
   @include pop-out-box;
   padding: $S;
@@ -41,6 +31,15 @@
       width: 50vw;
     }
     &__button-container {
+      &__selected {
+        background-color: $primary-red;
+        color: $background-color;
+      }
+      &__notSelected {
+        background-color: $primary-dark;
+        color: $background-color;
+      }
+      
       button {
         @include button;
         padding: $XXS $S;

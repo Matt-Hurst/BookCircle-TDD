@@ -8,7 +8,6 @@ describe('UserBookModal', () => {
   const mockBook = mockBooks[0]
   const closeModal = jest.fn()
   const editBook = jest.fn()
-  const handleClick = jest.fn()
 
   it('Should render', () => {
     render(<UserBookModal book={mockBook} closeModal={closeModal} editBook={editBook}/>)
@@ -16,8 +15,8 @@ describe('UserBookModal', () => {
     expect(screen.getByText(mockBook.title)).toBeInTheDocument()
     expect(screen.getByText(mockBook.genre)).toBeInTheDocument()
     expect(screen.getByText(mockBook.genre)).toBeInTheDocument()
-    expect(screen.getByText(mockBook.dateRead)).toBeInTheDocument()
-    expect(screen.getByText('Available to borrow')).toBeInTheDocument()
+    expect(screen.getByText(`read ${mockBook.dateRead}`)).toBeInTheDocument()
+    expect(screen.getByText(/available to borrow/)).toBeInTheDocument()
     const review = mockBook.review
     expect(screen.getByText(`Review: ${review}`)).toBeInTheDocument()
     expect(screen.getByRole('button')).toBeInTheDocument()
@@ -35,8 +34,8 @@ describe('UserBookModal', () => {
   })
   it('Should call handleClick function when edit book button is clicked', () => {
     render(<UserBookModal book={mockBook} closeModal={closeModal} editBook={editBook}/>)
-    expect(screen.queryByText(/Edit Book Modal/)).not.toBeInTheDocument()
+    expect(screen.queryByText(/Update Book/)).not.toBeInTheDocument()
     fireEvent.click(screen.getByRole('button'))
-    expect(screen.getByText(/Edit Book Modal/)).toBeInTheDocument()
+    expect(screen.getByText(/Update Book/)).toBeInTheDocument()
   })
 })

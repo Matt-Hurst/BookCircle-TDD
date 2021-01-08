@@ -29,7 +29,7 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
     setAvailableToBorrow(book.availableToBorrow)
     setGenre(book.genre)
     setStar(book.star)
-  }, [])
+  }, []) // eslint-disable-line
  
 
 
@@ -63,13 +63,15 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
         <div className='edit-book-modal-grand-wrapper__edit-div__button-container'>
           <button 
             data-testid='star-yes-button'
+            className={star ? 'edit-book-modal-grand-wrapper__edit-div__button-container__selected' 
+              : 'edit-book-modal-grand-wrapper__edit-div__button-container__notSelected'}
             onClick={(e) => handleStarBookChange(e)}
-            id={star ? 'selected' : 'notSelected'}
           >yes</button>
           <button 
             data-testid='star-no-button'
+            className={star ? 'edit-book-modal-grand-wrapper__edit-div__button-container__notSelected' 
+              : 'edit-book-modal-grand-wrapper__edit-div__button-container__selected'}
             onClick={(e) => handleStarBookChange(e)}
-            id={star ? 'notSelected' : 'selected'}
           >no</button>
         </div>
       </div>
@@ -78,13 +80,15 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
         <div className='edit-book-modal-grand-wrapper__edit-div__button-container'>
           <button 
             data-testid='lend-yes-button'
+            className={availableToBorrow ? 'edit-book-modal-grand-wrapper__edit-div__button-container__selected' 
+              : 'edit-book-modal-grand-wrapper__edit-div__button-container__notSelected'}
             onClick={(e) => handleAvailableToBorrowChange(e)} 
-            id={availableToBorrow ? 'selected' : 'notSelected'}
           >yes</button>
           <button 
             data-testid='lend-no-button' 
+            className={availableToBorrow ? 'edit-book-modal-grand-wrapper__edit-div__button-container__notSelected'
+             : 'edit-book-modal-grand-wrapper__edit-div__button-container__selected'}
             onClick={(e) => handleAvailableToBorrowChange(e)} 
-            id={availableToBorrow ? 'notSelected' : 'selected'}
           >no</button>
         </div>
       </div>
@@ -100,7 +104,6 @@ const EditBookModal: React.FC<EditBookModalProps> = ({ book, closeEdit, editBook
         <button 
           className='edit-book-modal-grand-wrapper__save-cancel-buttons-container__save-button'
           onClick={async () => {
-          console.log('click')
           await editBook(book.id,{...book, dateRead, review, availableToBorrow, genre, star})
           closeEdit()
         }}>save</button>

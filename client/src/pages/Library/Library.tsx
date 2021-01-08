@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { editBook } from '../../actions/'
 import { BookShelf } from '../../components/BookShelf'
 import { UserBookModal } from '../../components/UserBookModal'
+import { WordCloud } from '../../components/WordCloud'
 import { Book } from '../../interfaces'
 
 import './Library.scss'
@@ -63,6 +64,7 @@ const Library: React.FC<LibraryProps> = ({books, editBook}) => {
         await setClickedBook(book)
         }
         }/>
+      <WordCloud books={books}/>
       {clickedBook && <UserBookModal book={clickedBook} closeModal={() => setClickedBook(null)} editBook={editBook}/>}
     </div>
   )

@@ -9,6 +9,8 @@ const book = mockBooks[0]
 const closeEdit = jest.fn()
 const editBook = jest.fn()
 
+const btnClass = 'edit-book-modal-grand-wrapper__edit-div__button-container__'
+
 describe('Edit Book Modal', () => {
 
   it('Should render', () => {
@@ -39,21 +41,21 @@ describe('Edit Book Modal', () => {
     render(<EditBookModal book={book} closeEdit={closeEdit} editBook={editBook}/>)
     const lendYesBtn = screen.getByTestId('lend-yes-button')
     const lendNoBtn = screen.getByTestId('lend-no-button')
-    expect(lendYesBtn).toHaveClass('selected')
-    expect(lendNoBtn).toHaveClass('notSelected')
+    expect(lendYesBtn).toHaveClass(`${btnClass}selected`)
+    expect(lendNoBtn).toHaveClass(`${btnClass}notSelected`)
     userEvent.click(lendNoBtn)
-    expect(lendYesBtn).toHaveClass('notSelected')
-    expect(lendNoBtn).toHaveClass('selected')
+    expect(lendYesBtn).toHaveClass(`${btnClass}notSelected`)
+    expect(lendNoBtn).toHaveClass(`${btnClass}selected`)
   })
   it('Should change star read when can star read buttons are clicked', () => {
     render(<EditBookModal book={book} closeEdit={closeEdit} editBook={editBook}/>)
     const starYesBtn = screen.getByTestId('star-yes-button')
     const starNoBtn = screen.getByTestId('star-no-button')
-    expect(starYesBtn).toHaveClass('selected')
-    expect(starNoBtn).toHaveClass('notSelected')
+    expect(starYesBtn).toHaveClass(`${btnClass}selected`)
+    expect(starNoBtn).toHaveClass(`${btnClass}notSelected`)
     userEvent.click(starNoBtn)
-    expect(starYesBtn).toHaveClass('notSelected')
-    expect(starNoBtn).toHaveClass('selected')
+    expect(starYesBtn).toHaveClass(`${btnClass}notSelected`)
+    expect(starNoBtn).toHaveClass(`${btnClass}selected`)
   })
   it('Should change genre when new genre option is chosen', () => {
     render(<EditBookModal book={book} closeEdit={closeEdit} editBook={editBook}/>)
