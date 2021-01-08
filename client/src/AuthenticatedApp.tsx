@@ -8,6 +8,7 @@ import {
 import { Header } from './components/AuthHeader'
 import { BookSearch } from './pages/BookSearch';
 import { Dashboard } from './pages/Dashboard';
+import { Friends } from './pages/Friends';
 import { Library } from './pages/Library';
 
 
@@ -21,6 +22,9 @@ function AuthenticatedApp() {
         </Route>
         <Route path="/your-library">
           <Library />          
+        </Route>
+        <Route path="/friends">
+          <Friends />          
         </Route>
         <Route path="/search" exact>
           <BookSearch />
