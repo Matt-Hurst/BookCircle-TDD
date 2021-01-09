@@ -1,1 +1,31 @@
 @import '../../App.scss';
+
+.friends-grand-wrapper {
+  margin: $page-margin;
+
+  h1 {
+    @include pageTitle;
+  }
+
+  &__friend-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: $M;
+
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    p {
+      font-size: $S;
+    }
+
+    button {
+      @include button;
+      padding: $XXS;
+    }
+  }
+
+}

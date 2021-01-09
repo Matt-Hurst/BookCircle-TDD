@@ -34,22 +34,20 @@ const Friends: React.FC<FriendsProps> = ({friends}) => {
   
   
   return (
-    <div data-testid="friends-component">
+    <div data-testid="friends-component" className='friends-grand-wrapper'>
       <h1>Friends:</h1>
-      <div>
-        {names.length && names.map((friend, i) => {
-          return (
-            <div key={i}>
-              <BsFillPersonFill />
-              <p>{friend.name}</p>            
-              <button 
-                onClick={() => history.push(`/${friend.name}/library`)}
-                >view books
-                </button>
-            </div>
-          )
-        })}
-      </div>
+      {names.length && names.map((friend, i) => {
+        return (
+          <div key={i} className='friends-grand-wrapper__friend-container'>
+            <BsFillPersonFill />
+            <p>{friend.name}</p>            
+            <button 
+              onClick={() => history.push(`/${friend.name}/library`)}
+              >view books
+              </button>
+          </div>
+        )
+      })}
     </div>
   )
 }
