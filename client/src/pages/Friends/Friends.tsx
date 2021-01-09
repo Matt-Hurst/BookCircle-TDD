@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { BsFillPersonFill } from "react-icons/bs";
+import { BsFillPersonFill, BsPersonPlusFill } from "react-icons/bs";
 import { getFriendName } from './getFriendName'
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import './Friends.scss'
 
@@ -35,16 +35,20 @@ const Friends: React.FC<FriendsProps> = ({friends}) => {
   
   return (
     <div data-testid="friends-component" className='friends-grand-wrapper'>
-      <h1>Friends:</h1>
+      <div className='friends-grand-wrapper__heading'>
+        <h1>Friends:</h1>
+        <Link to='/friend-search'>
+          <BsPersonPlusFill />
+        </Link>
+      </div>
       {names.length && names.map((friend, i) => {
         return (
           <div key={i} className='friends-grand-wrapper__friend-container'>
             <BsFillPersonFill />
             <p>{friend.name}</p>            
-            <button 
-              onClick={() => history.push(`/${friend.name}/library`)}
-              >view books
-              </button>
+            <Link to={`/${friend.name}/library`}>      
+                <button>view books</button>
+            </Link>
           </div>
         )
       })}

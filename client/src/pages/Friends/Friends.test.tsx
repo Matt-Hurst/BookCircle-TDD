@@ -7,6 +7,10 @@ import Friends from './Friends'
 import { getFriendName } from './getFriendName'
 import { mockFriends } from '../../mocks'
 
+import {
+  BrowserRouter as Router,
+} from "react-router-dom"
+
 const mockStore = configureStore([thunk])
 
 const mockResponse1 = {name: 'Andre', _id: mockFriends[0]}
@@ -30,24 +34,23 @@ describe('Friends Page', () => {
   })
 
   it('Should render', () => {
-    render(<Provider store={store}><Friends /></Provider>)
+    render(<Provider store={store}><Router><Friends /></Router></Provider>)
     expect(screen.getByTestId('friends-component')).toBeInTheDocument()
   })
 
   it('Should render a heading', () => {
-    render(<Provider store={store}><Friends /></Provider>)
+    render(<Provider store={store}><Router><Friends /></Router></Provider>)
     expect(screen.getByText(/Friends/)).toBeInTheDocument()
   })
 
   it('Should render a list of friends', async () => {
-    render(<Provider store={store}><Friends /></Provider>)
+    render(<Provider store={store}><Router><Friends /></Router></Provider>)
     expect(await screen.findByText(/Andre/)).toBeInTheDocument()
   })
 
   it('Should render a button for each friend that when clicked directs to friends library page', async () => {
-    render(<Provider store={store}><Friends /></Provider>)
+    render(<Provider store={store}><Router><Friends /></Router></Provider>)
     const buttons = await screen.findAllByRole('button')
     expect(buttons.length).toBe(3)
-
   })
 })

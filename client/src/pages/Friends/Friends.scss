@@ -3,8 +3,23 @@
 .friends-grand-wrapper {
   margin: $page-margin;
 
-  h1 {
-    @include pageTitle;
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 5px solid $primary-dark;
+    margin: $XS 0;
+
+    h1 {
+      color: $primary-dark;
+      font-weight: 300;
+    }
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+    a {
+      color: black;
+    }
   }
 
   &__friend-container {
