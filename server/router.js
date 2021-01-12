@@ -10,7 +10,7 @@ const {
   updateTargetCtrl,
   rejectFriendRequestCtrl,
   removeActivityLogElementCtrl,
-  getUserCtrl,
+  getFriendBooksCtrl,
   getFriendsNameCtrl,
   requestBookCtrl,
   acceptBookRequestCtrl,
@@ -24,7 +24,6 @@ const {
 
 // USER ROUTES
 router.get('/getCurrentUser', authMiddleware, getCurrentUserCtrl)
-router.get('/getUser/:name', authMiddleware, getUserCtrl)
 router.get('/target', authMiddleware, getTargetCtrl)
 router.post('/createUser', createUserCtrl)
 router.post('/login', loginCtrl)
@@ -44,5 +43,6 @@ router.post('/rejectBookRequest', authMiddleware, rejectBookRequestCtrl)
 router.get('/availableBooks', authMiddleware, getAvailableBooksCtrl)
 router.put('/editBook', authMiddleware, editBookCtrl)
 router.delete('/deleteBook', authMiddleware, deleteBookCtrl )
+router.get('/friendBooks/:name', authMiddleware, getFriendBooksCtrl)
 
 module.exports = router

@@ -8,9 +8,10 @@ exports.getCurrentUserCtrl = (req, res) => {
   res.send(req.user)
 }
 
-exports.getUserCtrl = async (req, res) => {
-  const user = await User.find({ name: req.params.name })
-  res.send(user)
+exports.getFriendBooksCtrl = async (req, res) => {
+  const friendBooks = await User.find({ name: req.params.name }, 'books')
+  // console.log(friendBooks[0].books)
+  res.send(friendBooks)
 }
 
 exports.getFriendsNameCtrl = async (req, res) => {
