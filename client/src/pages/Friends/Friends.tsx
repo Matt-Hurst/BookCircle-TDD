@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { BsFillPersonFill, BsPersonPlusFill } from "react-icons/bs";
 import { getFriendName } from './getFriendName'
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './Friends.scss'
 
@@ -17,8 +17,6 @@ interface Names {
 
 const Friends: React.FC<FriendsProps> = ({friends}) => {
   const [names, setNames] = useState<Names[]>([]);
-
-  let history = useHistory()
   
   const getAllFriendsNames = async (friends: string[]) => {
     let result:Names[] = []
@@ -41,17 +39,19 @@ const Friends: React.FC<FriendsProps> = ({friends}) => {
           <BsPersonPlusFill />
         </Link>
       </div>
-      {names.length && names.map((friend, i) => {
+      {names.length ? names.map((friend, i) => {
         return (
           <div key={i} className='friends-grand-wrapper__friend-container'>
             <BsFillPersonFill />
             <p>{friend.name}</p>            
             <Link to={`/${friend.name}/library`}>      
-                <button>view books</button>
+              <button>view books</button>
             </Link>
           </div>
         )
-      })}
+      })
+      : <div>loading...</div>
+    }
     </div>
   )
 }
