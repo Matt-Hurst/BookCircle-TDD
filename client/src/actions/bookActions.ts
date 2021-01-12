@@ -2,9 +2,11 @@ import axios from 'axios'
 import { retrieveTokenFromLocalStorage } from '../auth'
 import { URL } from '../helpers'
 import { Book } from '../interfaces';
+import { friendId } from '../mocks';
 import { SET_USER_BOOKS } from './userActions';
 
 export const SET_AVAILABLE_BOOKS = 'SET_AVAILABLE_BOOKS';
+export const SET_FRIEND_BOOKS = 'SET_FRIEND_BOOKS'
 
 export const getAvailableBooks = () => async (dispatch: Function) => {
   try {
@@ -33,6 +35,22 @@ export const addBook = (book: Book) => async (dispatch: Function) => {
     dispatch({
       type: SET_USER_BOOKS,
       payload: data
+    })
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getFriendBooks = (friendName: string) => async (dispatch: Function) => {
+  try {
+    const { data } = await axios({
+      method: 'get',
+      url: `${URL}friendBooks/${friendName}`,
+      headers: {'Authorization': `Bearer ${retrieveTokenFromLocalStorage()}`}
+    })
+    dispatch({
+      type: SET_FRIEND_BOOKS,
+      payload: data[0].books
     })
   } catch (error) {
     console.error(error)

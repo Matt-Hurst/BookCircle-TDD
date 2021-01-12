@@ -1,4 +1,4 @@
-import  { requestBook, getAvailableBooks, addBook, SET_AVAILABLE_BOOKS } from './bookActions'
+import  { requestBook, getAvailableBooks, addBook, SET_AVAILABLE_BOOKS, SET_FRIEND_BOOKS, getFriendBooks } from './bookActions'
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk'
 import moxios from 'moxios'
@@ -65,6 +65,28 @@ describe('Book Action Creators', () => {
       })
     })
     await store.dispatch(getAvailableBooks())
+    const actionsCalled = store.getActions();
+    expect(actionsCalled[0]).toEqual(expectedAction)
+  })
+
+  it('getFriendBooks should make axios call and then disatch type: "SET_FRIEND_BOOKS" with payload', async () => {
+    newAvailableBooks = mockBooks;
+    store = mockStore({
+      friendBooks: [],
+    })
+    const expectedAction = {
+      type: SET_FRIEND_BOOKS,
+      payload: newAvailableBooks
+    }
+    
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent();
+      request.respondWith({
+        status: 200,
+        response: [{books: newAvailableBooks}]
+      })
+    })
+    await store.dispatch(getFriendBooks('Dave'))
     const actionsCalled = store.getActions();
     expect(actionsCalled[0]).toEqual(expectedAction)
   })
