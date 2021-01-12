@@ -8,9 +8,10 @@ interface FriendBookModalProps {
   book?: Book;
   closeModal: Function;
   requestBook: Function;
+  friendName?: string;
 }
 
-const FriendBookModal: React.FC<FriendBookModalProps> = ({book, closeModal, requestBook}) => {
+const FriendBookModal: React.FC<FriendBookModalProps> = ({book, closeModal, requestBook, friendName}) => {
 
   const [bookRequested, setBookRequested] = useState<boolean>(false)
 
@@ -30,9 +31,9 @@ const FriendBookModal: React.FC<FriendBookModalProps> = ({book, closeModal, requ
           />
          
           <div className='friend-book-modal-grand-wrapper__pop-out-container__content-div'>
-            <h3>Owner: {book.friendName}</h3>
+            <h3>Owner: {book.friendName || friendName}</h3>
             <h3>{book.title}</h3>
-            <h3>{book.friendName}'s Review:</h3>
+            <h3>{book.friendName  || friendName}'s Review:</h3>
             <p>{book.review}</p>
             <h3>{book.genre}</h3>
             {book.availableToBorrow && !bookRequested &&
